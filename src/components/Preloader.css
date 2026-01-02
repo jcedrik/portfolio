@@ -1,0 +1,71 @@
+/* Preloader.css */
+
+.preloader-introduction {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 999;
+  background-color: #0A0F2C; /* Couleur adaptée à votre ShaderGradient */
+}
+
+.preloader-introduction svg {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: calc(100% + 300px);
+  pointer-events: none;
+}
+
+.preloader-introduction svg path {
+  fill: #0A0F2C; /* Même couleur que le fond */
+}
+
+.preloader-introduction p {
+  display: flex;
+  color: white;
+  font-size: clamp(2rem, 6vw, 3.5rem); /* Responsive */
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  font-family: 'Departure Mono', 'Courier New', monospace; /* Votre police */
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+.preloader-introduction p span {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #2EC4FF 0%, #0B3CFF 100%); /* Dégradé cyan/bleu */
+  border-radius: 50%;
+  margin-right: 15px;
+  box-shadow: 0 0 20px rgba(46, 196, 255, 0.6); /* Effet lumineux */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .preloader-introduction p {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+  
+  .preloader-introduction p span {
+    width: 10px;
+    height: 10px;
+    margin-right: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .preloader-introduction p {
+    font-size: clamp(1.2rem, 10vw, 2rem);
+  }
+  
+  .preloader-introduction p span {
+    width: 8px;
+    height: 8px;
+    margin-right: 10px;
+  }
+}

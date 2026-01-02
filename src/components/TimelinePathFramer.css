@@ -1,0 +1,86 @@
+/* TimelinePath.css - Version Framer Motion - CORRIGÉ */
+
+.timeline-path-section {
+  width: 100vw;
+  position: relative;
+  padding: 100px 0 50px 0;
+  min-height: 350vh; /* AUGMENTÉ pour plus d'espace */
+  background: #0A0F2C;
+}
+
+.timeline-content {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#svg-stage {
+  max-width: 650px;
+  margin: 0 auto;
+  display: block;
+  overflow: visible;
+}
+
+.timeline-text {
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  color: #ffffff;
+  font-size: clamp(13px, 1.2vw, 17px);
+  width: clamp(180px, 28vw, 400px);
+  position: absolute;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+.timeline-text p {
+  margin: 0;
+  color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .timeline-path-section {
+    min-height: 380vh; /* Plus de hauteur sur tablet */
+  }
+
+  #svg-stage {
+    max-width: 450px;
+  }
+  
+  .timeline-text {
+    font-size: clamp(12px, 1.5vw, 15px);
+    width: clamp(150px, 30vw, 300px);
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline-path-section {
+    padding: 80px 20px;
+    min-height: 320vh;
+  }
+
+  #svg-stage {
+    max-width: 350px;
+  }
+  
+  .timeline-text {
+    font-size: 12px;
+    width: 140px;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-path-section {
+    min-height: 280vh;
+  }
+
+  #svg-stage {
+    max-width: 280px;
+  }
+  
+  .timeline-text {
+    font-size: 10px;
+    width: 110px;
+  }
+}

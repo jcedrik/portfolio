@@ -1,0 +1,134 @@
+/* HorizontalScroll.css - GSAP ScrollTrigger version */
+
+.horizontal-scroll-container {
+  overflow: hidden;
+  background: #0A0F2C;
+}
+
+.horizontal-scroll-track {
+  display: flex;
+  flex-wrap: nowrap;
+  width: fit-content;
+  will-change: transform;
+}
+
+.horizontal-panel {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Panel 1 - Transition message */
+.panel-transition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0A0F2C 0%, #0B1A3D 50%, #0A0F2C 100%);
+}
+
+.panel-content {
+  text-align: center;
+  padding: 40px;
+}
+
+.transition-text {
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 20px 0;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.transition-title {
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  color: #2EC4FF;
+  margin: 0 0 50px 0;
+  text-shadow: 0 0 40px rgba(46, 196, 255, 0.4);
+}
+
+.scroll-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+.arrow-right {
+  font-size: 1.5rem;
+  color: #2EC4FF;
+  animation: slideRight 1.5s ease-in-out infinite;
+}
+
+@keyframes slideRight {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(10px);
+    opacity: 1;
+  }
+}
+
+/* Panel 2 - Skills with lighter background */
+.panel-skills {
+  background: #1A2340;
+}
+
+.panel-skills .capsule-physics-section {
+  min-height: 100vh;
+  height: 100vh;
+  padding-top: 50px;
+}
+
+.panel-skills .capsule-physics-container {
+  height: 55vh;
+  max-height: 500px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .panel-content {
+    padding: 30px 20px;
+  }
+
+  .transition-title {
+    margin-bottom: 30px;
+  }
+
+  .scroll-hint {
+    gap: 10px;
+    font-size: 0.8rem;
+  }
+
+  .panel-skills .capsule-physics-container {
+    height: 50vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .transition-text {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+
+  .transition-title {
+    margin-bottom: 25px;
+  }
+
+  .panel-skills .capsule-physics-section {
+    padding-top: 30px;
+  }
+
+  .panel-skills .capsule-physics-container {
+    height: 45vh;
+  }
+}

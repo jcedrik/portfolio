@@ -1,0 +1,19 @@
+.mouse-trail-gallery {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.mouse-trail-gallery img {
+  width: 250px;  /* ✅ FIXE au lieu de 30vw */
+  height: 300px;  /* ✅ HAUTEUR FIXE */
+  object-fit: cover;  /* ✅ GARDE LE RATIO sans déformer */
+  position: absolute;
+  display: none;
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}

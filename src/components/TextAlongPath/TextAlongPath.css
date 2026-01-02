@@ -1,0 +1,153 @@
+/* TextAlongPath.css - Transition entre My Journey et Projects */
+
+.text-along-path-container {
+    width: 100%;
+    background: #0A0F2C;
+    position: relative;
+    overflow: hidden;
+    padding-top: 60px;
+}
+
+/* SVG container */
+.text-along-path-svg {
+    width: 100%;
+    display: block;
+}
+
+/* Texte courbé - TAILLE RÉDUITE pour éviter chevauchement */
+.curved-text {
+    font-size: 5px;
+    text-transform: uppercase;
+    fill: #2EC4FF;
+    font-family: 'Departure Mono', 'Courier New', monospace;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+/* Effet glow cyan animé */
+@keyframes textGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(46, 196, 255, 0.6));
+    }
+    50% {
+        filter: drop-shadow(0 0 15px rgba(46, 196, 255, 0.9));
+    }
+}
+
+.curved-text {
+    animation: textGlow 3s ease-in-out infinite;
+}
+
+/* ============================================
+   STICKY FOOTER - Effet parallaxe vers Projects
+   ============================================ */
+
+.sticky-footer-wrapper {
+    height: 200px;
+    background: #000000;
+    overflow: hidden;
+    position: relative;
+}
+
+.sticky-footer-content {
+    height: 100%;
+    background: linear-gradient(180deg, #000000 0%, #0A0F2C 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 40px;
+}
+
+.footer-text {
+    font-family: 'Departure Mono', 'Courier New', monospace;
+    font-size: clamp(24px, 5vw, 48px);
+    font-weight: 700;
+    color: #2EC4FF;
+    letter-spacing: 8px;
+    text-shadow: 0 0 30px rgba(46, 196, 255, 0.6);
+}
+
+.footer-arrow {
+    font-size: clamp(20px, 4vw, 36px);
+    color: #2EC4FF;
+    animation: bounceArrow 1.5s ease-in-out infinite;
+}
+
+@keyframes bounceArrow {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(10px);
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .text-along-path-container {
+        padding-top: 50px;
+    }
+    
+    .curved-text {
+        font-size: 4.5px;
+        letter-spacing: 2.5px;
+    }
+
+    .sticky-footer-wrapper {
+        height: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .text-along-path-container {
+        padding-top: 40px;
+    }
+    
+    .curved-text {
+        font-size: 4px;
+        letter-spacing: 2px;
+    }
+
+    .sticky-footer-wrapper {
+        height: 150px;
+    }
+
+    .sticky-footer-content {
+        gap: 20px;
+        padding: 30px;
+    }
+
+    .footer-text {
+        letter-spacing: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-along-path-container {
+        padding-top: 30px;
+    }
+    
+    .curved-text {
+        font-size: 3.5px;
+        letter-spacing: 1.5px;
+    }
+
+    .sticky-footer-wrapper {
+        height: 120px;
+    }
+
+    .sticky-footer-content {
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .footer-text {
+        letter-spacing: 3px;
+    }
+}

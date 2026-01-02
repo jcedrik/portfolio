@@ -1,0 +1,311 @@
+/* StickyFooter.css - Effet sticky footer comme Olivier Larose */
+
+.footer-container {
+  position: relative;
+  height: 100vh;
+  clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
+}
+
+.footer-sticky-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.footer-content {
+  background: linear-gradient(180deg, #0A0F2C 0%, #0B1A3D 50%, #0D2040 100%);
+  padding: 30px 80px 50px 80px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* Top Section - Navigation */
+.footer-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Contact Buttons - Top Right like Aziz */
+.footer-contact-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.nav-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nav-heading {
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: rgba(46, 196, 255, 0.6);
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.nav-column a,
+.nav-column p {
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin: 0;
+}
+
+.nav-column a:hover {
+  color: #2EC4FF;
+}
+
+/* Bottom */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.footer-title {
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: clamp(3rem, 12vw, 9rem);
+  font-weight: 900;
+  color: #2EC4FF;
+  margin: 0;
+  line-height: 0.9;
+  text-shadow: 0 0 60px rgba(46, 196, 255, 0.3);
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+/* Social Links */
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Contact Buttons - Like Aziz's site */
+.contact-btn {
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.contact-btn:hover {
+  border-color: #2EC4FF;
+  color: #2EC4FF;
+  box-shadow: 0 0 20px rgba(46, 196, 255, 0.3);
+}
+
+.social-link {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(46, 196, 255, 0.1);
+  border: 1px solid rgba(46, 196, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2EC4FF;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: rgba(46, 196, 255, 0.2);
+  border-color: #2EC4FF;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(46, 196, 255, 0.3);
+}
+
+/* CV Download Button */
+.cv-download-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #2EC4FF 0%, #0B3CFF 100%);
+  border: none;
+  border-radius: 25px;
+  color: #000;
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.cv-download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(46, 196, 255, 0.4);
+}
+
+.cv-download-btn svg {
+  color: #000;
+}
+
+.footer-copyright {
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .footer-content {
+    padding: 40px 50px;
+  }
+
+  .footer-nav {
+    gap: 50px;
+  }
+
+  .footer-social {
+    gap: 12px;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer-title {
+    font-size: clamp(2.5rem, 10vw, 7rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    height: 100vh;
+  }
+
+  .footer-sticky-wrapper {
+    height: 100vh;
+  }
+
+  .footer-content {
+    padding: 40px 30px;
+  }
+
+  .footer-nav {
+    gap: 40px;
+  }
+
+  .nav-heading {
+    font-size: 11px;
+  }
+
+  .nav-column a,
+  .nav-column p {
+    font-size: 13px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .footer-right {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .footer-social {
+    gap: 10px;
+  }
+
+  .social-link {
+    width: 38px;
+    height: 38px;
+  }
+
+  .cv-download-btn {
+    padding: 10px 16px;
+    font-size: 11px;
+  }
+
+  .footer-title {
+    font-size: clamp(2rem, 12vw, 5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-content {
+    padding: 30px 20px;
+  }
+
+  .footer-nav {
+    gap: 30px;
+  }
+
+  .nav-heading {
+    font-size: 10px;
+  }
+
+  .nav-column a,
+  .nav-column p {
+    font-size: 12px;
+  }
+
+  .footer-title {
+    font-size: clamp(1.8rem, 12vw, 3rem);
+  }
+
+  .footer-copyright {
+    font-size: 10px;
+  }
+
+  .social-link {
+    width: 36px;
+    height: 36px;
+  }
+
+  .social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .cv-download-btn {
+    padding: 10px 14px;
+    font-size: 10px;
+  }
+
+  .cv-download-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}

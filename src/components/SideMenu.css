@@ -1,0 +1,191 @@
+/* SideMenu.css - Awwwards Style with your gradient colors */
+
+/* Header Container */
+.header {
+  position: fixed;
+  top: 32px;
+  right: 32px;
+  z-index: 100;
+}
+
+/* Menu Window - Your gradient colors */
+.menu {
+  width: 100px;
+  height: 40px;
+  background: linear-gradient(135deg, rgba(10, 15, 44, 0.95) 0%, rgba(11, 60, 255, 0.85) 50%, rgba(46, 196, 255, 0.85) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 25px;
+  border: 1px solid rgba(46, 196, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(11, 60, 255, 0.4);
+}
+
+/* Button Container */
+.menu-button {
+  width: 100px;
+  height: 40px;
+  border-radius: 25px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.menu-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.menu-el {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Your original gradient colors */
+  background: linear-gradient(135deg, #0A0F2C 0%, #0B3CFF 50%, #2EC4FF 100%);
+}
+
+/* Perspective Text Effect - Olivier Larose style */
+.perspective-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.perspective-text p {
+  margin: 0;
+  color: white;
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  pointer-events: none;
+  transition: all 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.perspective-text p:nth-of-type(2) {
+  position: absolute;
+  transform-origin: bottom center;
+  transform: rotateX(-90deg) translateY(9px);
+  opacity: 0;
+}
+
+.menu-el:hover .perspective-text {
+  transform: rotateX(90deg);
+}
+
+.menu-el:hover .perspective-text p:nth-of-type(2) {
+  opacity: 1;
+}
+
+/* Navigation Container */
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 100px 40px 50px 40px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.nav-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Link Container with perspective */
+.link-container {
+  perspective: 120px;
+  perspective-origin: bottom;
+}
+
+.link-container a {
+  display: block;
+  color: white;
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: 32px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.link-container a:hover {
+  opacity: 0.6;
+}
+
+/* Footer Links */
+.nav-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.nav-footer a {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.nav-footer a:hover {
+  color: #2EC4FF;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    top: 20px;
+    right: 20px;
+  }
+
+  .nav {
+    padding: 80px 30px 40px 30px;
+  }
+
+  .link-container a {
+    font-size: 28px;
+  }
+
+  .nav-footer {
+    gap: 15px;
+  }
+
+  .nav-footer a {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    padding: 70px 25px 35px 25px;
+  }
+
+  .link-container a {
+    font-size: 24px;
+  }
+
+  .nav-footer {
+    gap: 12px;
+  }
+
+  .nav-footer a {
+    font-size: 10px;
+  }
+}
