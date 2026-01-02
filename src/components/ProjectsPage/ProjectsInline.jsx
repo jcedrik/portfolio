@@ -2,6 +2,7 @@ import { projects } from './data';
 import Card from './CardInline';
 import { useScroll } from 'framer-motion';
 import { useRef } from 'react';
+import ProjectsTitle from './ProjectsTitle';
 
 export default function ProjectsInline() {
   const container = useRef(null);
@@ -17,17 +18,20 @@ export default function ProjectsInline() {
       style={{
         position: 'relative',
         marginTop: '0',
-        background: '#0A0F2C',
-        paddingTop: '50px'  // Réduit car pas de titre
       }}
     >
-      {/* TITRE SUPPRIMÉ - déjà affiché dans TextAlongPath */}
-      {
-        projects.map( (project, i) => {
-          const targetScale = 1 - ( (projects.length - i) * 0.05);
-          return <Card key={`p_${i}`} i={i} {...project} progress={scrollYProgress} range={[i * .25, 1]} targetScale={targetScale}/>
-        })
-      }
+      {/* Titre animé */}
+      <ProjectsTitle />
+      
+      {/* Cartes de projets */}
+      <div style={{ background: '#0A0F2C', paddingTop: '50px' }}>
+        {
+          projects.map( (project, i) => {
+            const targetScale = 1 - ( (projects.length - i) * 0.05);
+            return <Card key={`p_${i}`} i={i} {...project} progress={scrollYProgress} range={[i * .25, 1]} targetScale={targetScale}/>
+          })
+        }
+      </div>
     </main>
   )
 }

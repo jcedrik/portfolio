@@ -6,15 +6,14 @@ export default function MouseTrailGallery() {
   const stepsRef = useRef(0);
   const currentIndexRef = useRef(0);
   const nbOfImagesRef = useRef(0);
-  const maxNumberOfImages = 4;  // ✅ Max 4 images à la fois
-  const numberOfImages = 5;      // ✅ 5 images totales
+  const maxNumberOfImages = 4;
 
   const manageMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY, movementX, movementY } = e;
 
     stepsRef.current += Math.abs(movementX) + Math.abs(movementY);
 
-    if (stepsRef.current >= currentIndexRef.current * 120) {  // ✅ Moins sensible
+    if (stepsRef.current >= currentIndexRef.current * 120) {
       moveImage(clientX, clientY);
 
       if (nbOfImagesRef.current === maxNumberOfImages) {
@@ -68,7 +67,6 @@ export default function MouseTrailGallery() {
     return images;
   };
 
-  // ✅ PHOTOS 1, 3, 4, 5, 8
   const images = [
     '/images/1.jpg',
     '/images/3.jpg',
@@ -85,7 +83,7 @@ export default function MouseTrailGallery() {
       {images.map((src, index) => (
         <img
           key={index}
-          ref={(el) => (refs.current[index] = el)}
+          ref={(el) => { refs.current[index] = el; }}
           src={src}
           alt={`Gallery ${index + 1}`}
         />

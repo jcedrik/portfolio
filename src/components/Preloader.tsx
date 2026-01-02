@@ -4,15 +4,15 @@ import { opacity, slideUp } from './preloaderAnim';
 import './Preloader.css';
 
 const words = [
-  "Watkwanonhwerá:ton",  // Mohawk
-  "Bienvenue",           // Français
-  "Welcome",             // Anglais
-  "Bienvenidos",         // Espagnol
-  "欢迎",                // Chinois
-  "いらっしゃいませ",     // Japonais
-  "مرحباً",              // Arabe
-  "Добро пожаловать",    // Russe
-  "Willkommen"           // Allemand
+  "Watkwanonhwerá:ton",
+  "Bienvenue",
+  "Welcome",
+  "Bienvenidos",
+  "欢迎",
+  "いらっしゃいませ",
+  "مرحباً",
+  "Добро пожаловать",
+  "Willkommen"
 ];
 
 interface Dimension {
@@ -42,11 +42,11 @@ export default function Preloader() {
   const curve = {
     initial: {
       d: initialPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] }
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as const }
     },
     exit: {
       d: targetPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.3 }
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as const, delay: 0.3 }
     }
   };
 

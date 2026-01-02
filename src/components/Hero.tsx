@@ -1,4 +1,4 @@
-import TextType from './TextType';
+import TextType from './Texttype';
 import './Hero.css';
 
 export default function Hero() {

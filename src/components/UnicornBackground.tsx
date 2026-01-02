@@ -1,7 +1,4 @@
 import { ShaderGradientCanvas, ShaderGradient } from '@shadergradient/react'
-import * as reactSpring from '@react-spring/three'
-import * as drei from '@react-three/drei'
-import * as fiber from '@react-three/fiber'
 
 export default function UnicornBackground() {
   return (
@@ -16,7 +13,6 @@ export default function UnicornBackground() {
       }}
     >
       <ShaderGradientCanvas
-        importedFiber={{ ...fiber, ...drei, ...reactSpring }}
         style={{
           position: 'absolute',
           top: 0,

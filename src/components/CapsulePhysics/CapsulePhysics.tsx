@@ -37,7 +37,7 @@ export default function CapsulePhysics() {
     const engine = Engine.create();
     engine.gravity.y = 1;
 
-    // Renderer - laisse Matter créer son propre canvas
+    // Renderer
     const render = Render.create({
       element: container,
       engine: engine,
@@ -52,10 +52,10 @@ export default function CapsulePhysics() {
     // Walls
     const wallOptions = { isStatic: true, render: { visible: false } };
     const walls = [
-      Bodies.rectangle(width / 2, height + 25, width, 50, wallOptions), // bottom
-      Bodies.rectangle(-25, height / 2, 50, height, wallOptions), // left
-      Bodies.rectangle(width + 25, height / 2, 50, height, wallOptions), // right
-      Bodies.rectangle(width / 2, -25, width, 50, wallOptions), // top - AJOUTÉ
+      Bodies.rectangle(width / 2, height + 25, width, 50, wallOptions),
+      Bodies.rectangle(-25, height / 2, 50, height, wallOptions),
+      Bodies.rectangle(width + 25, height / 2, 50, height, wallOptions),
+      Bodies.rectangle(width / 2, -25, width, 50, wallOptions),
     ];
     Composite.add(engine.world, walls);
 
@@ -66,9 +66,8 @@ export default function CapsulePhysics() {
       const capsuleWidth = skill.name.length * 15 + 40;
       const capsuleHeight = 40;
       
-      // Position de départ DANS le conteneur (pas au-dessus)
       const startX = 100 + Math.random() * (width - 200);
-      const startY = 50 + (i % 3) * 60; // Répartis sur 3 rangées en haut
+      const startY = 50 + (i % 3) * 60;
       
       const capsule = Bodies.rectangle(
         startX,
@@ -102,11 +101,11 @@ export default function CapsulePhysics() {
     Composite.add(engine.world, mouseConstraint);
     render.mouse = mouse;
 
-    // Fix scroll issue
-    const removeMouseWheelListener = () => {
-      render.canvas.removeEventListener('wheel', mouse.mousewheel as EventListener);
+    // Fix scroll issue - prevent wheel events on canvas
+    const handleWheel = (e: WheelEvent) => {
+      e.stopPropagation();
     };
-    removeMouseWheelListener();
+    render.canvas.addEventListener('wheel', handleWheel, { passive: true });
 
     // Draw text on capsules
     Events.on(render, 'afterRender', () => {
@@ -135,6 +134,7 @@ export default function CapsulePhysics() {
 
     // Cleanup
     return () => {
+      render.canvas.removeEventListener('wheel', handleWheel);
       Render.stop(render);
       Runner.stop(runner);
       Engine.clear(engine);

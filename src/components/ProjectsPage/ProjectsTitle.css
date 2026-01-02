@@ -1,0 +1,93 @@
+/* ProjectsTitle.css - Titre animé pour la section Projects */
+
+.projects-title-container {
+  width: 100%;
+  background: #0A0F2C;
+  padding: 80px 20px 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -2px; /* Fix pour éviter les bandes */
+}
+
+.projects-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.projects-title {
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 900;
+  color: #2EC4FF;
+  margin: 0;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  text-shadow: 
+    0 0 20px rgba(46, 196, 255, 0.8),
+    0 0 40px rgba(46, 196, 255, 0.6),
+    0 0 60px rgba(46, 196, 255, 0.4),
+    0 0 80px rgba(46, 196, 255, 0.2);
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+.projects-arrow {
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: #2EC4FF;
+  text-shadow: 
+    0 0 15px rgba(46, 196, 255, 0.8),
+    0 0 30px rgba(46, 196, 255, 0.5);
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+/* Animation glow pulsante */
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 20px rgba(46, 196, 255, 0.8),
+      0 0 40px rgba(46, 196, 255, 0.6),
+      0 0 60px rgba(46, 196, 255, 0.4),
+      0 0 80px rgba(46, 196, 255, 0.2);
+    filter: brightness(1);
+  }
+  50% {
+    text-shadow: 
+      0 0 30px rgba(46, 196, 255, 1),
+      0 0 60px rgba(46, 196, 255, 0.8),
+      0 0 90px rgba(46, 196, 255, 0.6),
+      0 0 120px rgba(46, 196, 255, 0.4);
+    filter: brightness(1.2);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .projects-title-container {
+    padding: 60px 15px 40px 15px;
+  }
+
+  .projects-title-wrapper {
+    gap: 20px;
+  }
+
+  .projects-title {
+    letter-spacing: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-title-container {
+    padding: 50px 10px 30px 10px;
+  }
+
+  .projects-title-wrapper {
+    gap: 15px;
+  }
+
+  .projects-title {
+    letter-spacing: 2px;
+  }
+}

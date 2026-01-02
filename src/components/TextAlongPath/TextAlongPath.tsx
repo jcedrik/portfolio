@@ -47,7 +47,7 @@ export default function TextAlongPath() {
                     {[...Array(2)].map((_, i) => (
                         <textPath 
                             key={i} 
-                            ref={ref => paths.current[i] = ref} 
+                            ref={(ref) => { paths.current[i] = ref; }} 
                             startOffset={i * 50 + "%"} 
                             href="#curve"
                         >
@@ -76,11 +76,7 @@ const StickyFooter = ({ scrollProgress }: StickyFooterProps) => {
             <motion.div 
                 style={{ y }} 
                 className="sticky-footer-content"
-            >
-                <span className="footer-arrow">↓</span>
-                <span className="footer-text">PROJECTS</span>
-                <span className="footer-arrow">↓</span>
-            </motion.div>
+            />
         </div>
     );
 };

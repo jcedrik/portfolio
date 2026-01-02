@@ -3,20 +3,19 @@ import { motion } from 'framer-motion';
 import { opacity, slideUp } from './preloaderAnim';
 import './Preloader.css';
 
-// Version étendue avec plus de langues
 const words = [
-  "Hello",      // Anglais
-  "Bonjour",    // Français
-  "Hola",       // Espagnol
-  "Ciao",       // Italien
-  "Olá",        // Portugais
-  "Hallo",      // Allemand/Néerlandais
-  "Привет",     // Russe
-  "你好",       // Chinois
-  "こんにちは",  // Japonais
-  "안녕하세요",  // Coréen
-  "مرحبا",      // Arabe
-  "Namaste"     // Hindi
+  "Hello",
+  "Bonjour",
+  "Hola",
+  "Ciao",
+  "Olá",
+  "Hallo",
+  "Привет",
+  "你好",
+  "こんにちは",
+  "안녕하세요",
+  "مرحبا",
+  "Namaste"
 ];
 
 interface Dimension {
@@ -46,11 +45,11 @@ export default function PreloaderExtended() {
   const curve = {
     initial: {
       d: initialPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] }
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as const }
     },
     exit: {
       d: targetPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.3 }
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as const, delay: 0.3 }
     }
   };
 

@@ -18,12 +18,12 @@ const linkVariants = {
     transition: {
       duration: 0.65,
       delay: 0.5 + (i * 0.1),
-      ease: [0.215, 0.61, 0.355, 1],
+      ease: [0.215, 0.61, 0.355, 1] as const,
     }
   }),
   exit: {
     opacity: 0,
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] }
+    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] as const }
   }
 };
 
@@ -39,12 +39,12 @@ const slideIn = {
     transition: {
       duration: 0.5,
       delay: 0.75 + (i * 0.1),
-      ease: [0.215, 0.61, 0.355, 1]
+      ease: [0.215, 0.61, 0.355, 1] as const
     }
   }),
   exit: {
     opacity: 0,
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] }
+    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] as const }
   }
 };
 
@@ -55,14 +55,14 @@ const menuVariants = {
     height: "85vh",
     top: "-25px",
     right: "-25px",
-    transition: { duration: 0.75, type: "tween", ease: [0.76, 0, 0.24, 1] }
+    transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] as const }
   },
   closed: {
     width: "100px",
     height: "40px",
     top: "0px",
     right: "0px",
-    transition: { duration: 0.75, delay: 0.35, type: "tween", ease: [0.76, 0, 0.24, 1] }
+    transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] as const }
   }
 };
 
@@ -139,7 +139,17 @@ export default function SideMenu() {
                           initial="hidden"
                           animate="visible"
                           exit="exit"
-                          onClick={() => setIsActive(false)}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setIsActive(false);
+                            // Petit délai pour laisser le menu se fermer
+                            setTimeout(() => {
+                              const targetElement = document.querySelector(link.href);
+                              if (targetElement) {
+                                targetElement.scrollIntoView({ behavior: 'smooth' });
+                              }
+                            }, 300);
+                          }}
                         >
                           {link.title}
                         </motion.a>
@@ -173,7 +183,7 @@ export default function SideMenu() {
             <motion.div
               className="menu-slider"
               animate={{ top: isActive ? "-100%" : "0%" }}
-              transition={{ duration: 0.5, type: "tween", ease: [0.76, 0, 0.24, 1] }}
+              transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] as const }}
             >
               <div className="menu-el" onClick={() => setIsActive(!isActive)}>
                 <PerspectiveText label="Menu" />
