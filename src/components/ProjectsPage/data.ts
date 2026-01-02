@@ -1,4 +1,17 @@
-export const projects = [
+export interface Project {
+  title: string;
+  description: string;
+  challenge?: string;
+  tags: string;
+  src: string;
+  link: string;
+  color: string;
+  imagePosition?: string;
+  scaleRange?: [number, number];
+  objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
+}
+
+export const projects: Project[] = [
   {
     title: "SOC-in-a-Box — Purple Team Lab",
     description: "Designed and deployed an end-to-end SOC lab environment, combining network, endpoint, and SIEM telemetry. Focused on real-world detection, incident response, and adversary emulation.",

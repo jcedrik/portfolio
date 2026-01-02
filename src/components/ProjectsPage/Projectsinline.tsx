@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import ProjectsTitle from './ProjectsTitle';
 
 export default function ProjectsInline() {
-  const container = useRef(null);
+  const container = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ['start start', 'end end']
@@ -26,8 +26,8 @@ export default function ProjectsInline() {
       {/* Cartes de projets */}
       <div style={{ background: '#0A0F2C', paddingTop: '50px' }}>
         {
-          projects.map( (project, i) => {
-            const targetScale = 1 - ( (projects.length - i) * 0.05);
+          projects.map((project, i) => {
+            const targetScale = 1 - ((projects.length - i) * 0.05);
             return <Card key={`p_${i}`} i={i} {...project} progress={scrollYProgress} range={[i * .25, 1]} targetScale={targetScale}/>
           })
         }

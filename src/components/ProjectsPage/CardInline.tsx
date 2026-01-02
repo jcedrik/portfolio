@@ -1,9 +1,40 @@
-import { useTransform, motion, useScroll } from 'framer-motion';
+import { useTransform, motion, useScroll, MotionValue } from 'framer-motion';
 import { useRef } from 'react';
 
-const Card = ({i, title, description, challenge, src, link, color, progress, range, targetScale, imagePosition = 'center', scaleRange = [2, 1], objectFit = 'cover', tags}) => {
+interface CardProps {
+  i: number;
+  title: string;
+  description: string;
+  challenge?: string;
+  src: string;
+  link?: string;
+  color: string;
+  progress: MotionValue<number>;
+  range: [number, number];
+  targetScale: number;
+  imagePosition?: string;
+  scaleRange?: [number, number];
+  objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
+  tags?: string;
+}
 
-  const container = useRef(null);
+const Card = ({
+  i, 
+  title, 
+  description, 
+  challenge, 
+  src, 
+  color, 
+  progress, 
+  range, 
+  targetScale, 
+  imagePosition = 'center', 
+  scaleRange = [2, 1], 
+  objectFit = 'cover', 
+  tags
+}: CardProps) => {
+
+  const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ['start end', 'start start']
