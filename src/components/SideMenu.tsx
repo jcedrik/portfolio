@@ -141,14 +141,11 @@ export default function SideMenu() {
                           exit="exit"
                           onClick={(e) => {
                             e.preventDefault();
+                            const targetElement = document.querySelector(link.href);
+                            if (targetElement) {
+                              targetElement.scrollIntoView({ behavior: 'smooth' });
+                            }
                             setIsActive(false);
-                            // Petit délai pour laisser le menu se fermer
-                            setTimeout(() => {
-                              const targetElement = document.querySelector(link.href);
-                              if (targetElement) {
-                                targetElement.scrollIntoView({ behavior: 'smooth' });
-                              }
-                            }, 300);
                           }}
                         >
                           {link.title}

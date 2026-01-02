@@ -73,6 +73,7 @@ export default function StickyFooter() {
                 </a>
               </div>
 
+              <p className="footer-location">Based in Montréal, QC, Canada</p>
               <p className="footer-copyright">© 2025 Jean-Cédrik Dorélas</p>
             </div>
           </div>

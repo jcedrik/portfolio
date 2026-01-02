@@ -38,7 +38,13 @@ function App() {
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
     });
+
+    // Rendre Lenis accessible globalement pour d'autres composants
+    (window as any).lenis = lenis;
 
     // Support pour les liens d'ancrage
     const handleAnchorClick = (e: MouseEvent) => {

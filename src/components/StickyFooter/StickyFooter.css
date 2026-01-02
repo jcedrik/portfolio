@@ -175,6 +175,14 @@
   color: #000;
 }
 
+.footer-location {
+  font-family: 'Departure Mono', 'Courier New', monospace;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 5px 0;
+  white-space: nowrap;
+}
+
 .footer-copyright {
   font-family: 'Departure Mono', 'Courier New', monospace;
   font-size: 12px;
