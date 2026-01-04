@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
 import Lenis from '@studio-freight/lenis';
-import UnicornBackground from "./components/UnicornBackground";
+import AnimatedBackground from "./components/AnimatedBackground";
 import SideMenu from "./components/SideMenu";
 import Hero from "./components/Hero";
 import ScrollIndicator from "./components/ScrollIndicator";
@@ -88,7 +88,7 @@ function App() {
         {isLoading && <Preloader />}
       </AnimatePresence>
 
-      <UnicornBackground />
+      <AnimatedBackground />
       <SideMenu />
 
       {/* CONTAINER pour l'effet de transition (Hero + About) */}
@@ -209,28 +209,24 @@ const AboutSection = ({ scrollYProgress }: { scrollYProgress: any }) => {
         {/* Texte About */}
         <div style={{ 
           position: "absolute",
-          bottom: "60px",
-          maxWidth: "750px",
-          padding: "35px 45px",
+          bottom: "40px",
+          maxWidth: "700px",
+          padding: "20px 30px",
           color: "white",
           textAlign: "center",
-          fontSize: "1.05rem",
-          lineHeight: "1.8",
+          fontSize: "0.95rem",
+          lineHeight: "1.7",
           fontFamily: "'Departure Mono', 'Courier New', monospace",
           zIndex: 10,
           background: "rgba(10, 15, 44, 0.6)",
           backdropFilter: "blur(8px)",
           borderRadius: "20px"
         }}>
-          <p style={{ marginBottom: "20px", opacity: 0.95 }}>
-            I am Jean-Cedrik Dorelas, a web developer passionate about creating 
-            innovative and interactive digital experiences. My expertise spans 
-            full-stack development using React, Node.js, and modern web technologies.
+          <p style={{ marginBottom: "12px", opacity: 0.95 }}>
+            I am Jean-Cedrik Dorelas, a web developer and computer engineering student with a strong interest in cybersecurity, passionate about building innovative and interactive digital experiences. I am currently pursuing studies in Computer Engineering while also training in Cybersecurity, allowing me to combine software development with a strong understanding of systems, security, and performance.
           </p>
           <p style={{ opacity: 0.95, marginBottom: 0 }}>
-            My years of experience in athletics and basketball have shaped a mindset 
-            that is both collaborative and competitive, allowing me to balance 
-            teamwork with personal excellence.
+            My background in athletics and basketball has shaped a disciplined and resilient mindset that values collaboration, continuous improvement, and personal excellence—qualities I bring into every technical and team-based project.
           </p>
         </div>
       </div>

@@ -198,7 +198,7 @@ const TimelinePath = () => {
               lineHeight: '1.6',
               fontWeight: '500'
             }}>
-              BEng in Computer Engineering, Concordia University
+              BEng in Computer Engineering - Ongoing, Concordia University
             </p>
           </motion.foreignObject>
 
@@ -214,7 +214,7 @@ const TimelinePath = () => {
               lineHeight: '1.6',
               fontWeight: '500'
             }}>
-              BSc (Cumulative) in Cybersecurity, Polytechnique Montréal
+              BSc (Cumulative) in Cybersecurity - Ongoing, Polytechnique Montréal
             </p>
           </motion.foreignObject>
 
