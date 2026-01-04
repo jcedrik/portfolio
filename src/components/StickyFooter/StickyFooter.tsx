@@ -24,7 +24,7 @@ export default function StickyFooter() {
                 href="tel:+14384029966" 
                 className="contact-btn"
               >
-                +1 438 402 9966
+                +1 438-402-9966
               </a>
               <a 
                 href="mailto:jcedrik100@gmail.com" 

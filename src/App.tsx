@@ -38,8 +38,8 @@ function App() {
       duration: 1.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: false,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 0.5,
+      touchMultiplier: 1,
       infinite: false,
     });
 
