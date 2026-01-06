@@ -434,12 +434,41 @@
 }
 
 /* ============================================
-   PRELOADER
+   PRELOADER - Fix long words like Watkwanonhwerá:ton
    ============================================ */
 
 @media (max-width: 768px) {
+  .preloader-introduction {
+    padding: 0 15px !important;
+  }
+
   .preloader-introduction p {
-    font-size: clamp(1.5rem, 8vw, 2.5rem) !important;
+    font-size: clamp(1.3rem, 6vw, 2rem) !important;
+    max-width: 90vw !important;
+    text-align: center !important;
+    word-break: break-word !important;
+    padding: 0 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .preloader-introduction p {
+    font-size: clamp(1.1rem, 5.5vw, 1.5rem) !important;
+    letter-spacing: 1px !important;
+  }
+  
+  .preloader-introduction p span {
+    width: 8px !important;
+    height: 8px !important;
+    margin-right: 8px !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .preloader-introduction p {
+    font-size: clamp(1rem, 5vw, 1.3rem) !important;
+    letter-spacing: 0.5px !important;
   }
 }
 
