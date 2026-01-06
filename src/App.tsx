@@ -18,6 +18,7 @@ function App() {
   const container = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   
   // Scroll progress entre Hero et About
   const { scrollYProgress } = useScroll({
@@ -25,16 +26,21 @@ function App() {
     offset: ["start start", "end end"]
   });
 
-  // Check if mobile
+  // Check device type - includes tablets up to 1024px
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+    const checkDevice = () => {
+      const width = window.innerWidth;
+      setIsMobile(width <= 768);
+      setIsTablet(width > 768 && width <= 1024);
     };
     
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    return () => window.removeEventListener('resize', checkDevice);
   }, []);
+
+  // Use mobile/tablet timeline for screens <= 1024px
+  const useSimpleTimeline = isMobile || isTablet;
 
   // Preloader timer
   useEffect(() => {
@@ -103,7 +109,7 @@ function App() {
 
       <main ref={container} style={{ position: 'relative', height: '200vh' }}>
         <HeroSection scrollYProgress={scrollYProgress} />
-        <AboutSection scrollYProgress={scrollYProgress} isMobile={isMobile} />
+        <AboutSection scrollYProgress={scrollYProgress} isMobile={isMobile} isTablet={isTablet} />
       </main>
 
       <div style={{ 
@@ -111,9 +117,9 @@ function App() {
         zIndex: 10,
         background: '#0A0F2C'
       }}>
-        {/* Timeline - Desktop ou Mobile */}
+        {/* Timeline - Use simple version for mobile AND tablets */}
         <section id="journey">
-          {isMobile ? <TimelineMobile /> : <TimelinePath />}
+          {useSimpleTimeline ? <TimelineMobile /> : <TimelinePath />}
         </section>
 
         <TextAlongPath />
@@ -154,10 +160,12 @@ const HeroSection = ({ scrollYProgress }: { scrollYProgress: any }) => {
   );
 };
 
-// ABOUT SECTION - Responsive pour tous les mobiles
-const AboutSection = ({ scrollYProgress, isMobile }: { scrollYProgress: any; isMobile: boolean }) => {
+// ABOUT SECTION - Responsive pour mobiles et tablettes
+const AboutSection = ({ scrollYProgress, isMobile, isTablet }: { scrollYProgress: any; isMobile: boolean; isTablet: boolean }) => {
   const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
   const rotate = useTransform(scrollYProgress, [0, 1], [5, 0]);
+  
+  const isSmallScreen = isMobile || isTablet;
 
   return (
     <motion.div
@@ -191,7 +199,7 @@ const AboutSection = ({ scrollYProgress, isMobile }: { scrollYProgress: any; isM
         flexDirection: "column",
         alignItems: "center",
         justifyContent: isMobile ? "flex-start" : "center",
-        padding: isMobile ? "20px 15px" : "0"
+        padding: isMobile ? "20px 15px" : isTablet ? "30px 40px" : "0"
       }}>
         {/* Titre About Me */}
         <div style={{ 
@@ -202,7 +210,7 @@ const AboutSection = ({ scrollYProgress, isMobile }: { scrollYProgress: any; isM
           paddingTop: isMobile ? "10px" : "0"
         }}>
           <h2 style={{
-            fontSize: isMobile ? "clamp(1.5rem, 7vw, 2.2rem)" : "clamp(1.6rem, 8vw, 10rem)",
+            fontSize: isMobile ? "clamp(1.5rem, 7vw, 2.2rem)" : isTablet ? "clamp(2rem, 6vw, 3rem)" : "clamp(1.6rem, 8vw, 10rem)",
             fontWeight: 900,
             fontFamily: "'Departure Mono', 'Courier New', monospace",
             color: "#ffffff",
@@ -213,18 +221,18 @@ const AboutSection = ({ scrollYProgress, isMobile }: { scrollYProgress: any; isM
           </h2>
         </div>
 
-        {/* Mouse Trail Gallery - Desktop only */}
-        {!isMobile && <MouseTrailGallery />}
+        {/* Mouse Trail Gallery - Desktop only (not on tablets) */}
+        {!isSmallScreen && <MouseTrailGallery />}
 
         {/* Texte About */}
         <div style={{ 
           position: isMobile ? "relative" : "absolute",
           bottom: isMobile ? "0" : "40px",
-          maxWidth: isMobile ? "100%" : "700px",
-          padding: isMobile ? "15px" : "20px 30px",
+          maxWidth: isMobile ? "100%" : isTablet ? "85%" : "700px",
+          padding: isMobile ? "15px" : isTablet ? "25px 35px" : "20px 30px",
           color: "white",
           textAlign: "center",
-          fontSize: isMobile ? "0.75rem" : "0.95rem",
+          fontSize: isMobile ? "0.75rem" : isTablet ? "0.9rem" : "0.95rem",
           lineHeight: isMobile ? "1.5" : "1.7",
           fontFamily: "'Departure Mono', 'Courier New', monospace",
           zIndex: 10,
