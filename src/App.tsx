@@ -8,6 +8,7 @@ import ScrollIndicator from "./components/ScrollIndicator";
 import MouseTrailGallery from "./components/MouseTrailGallery";
 import Preloader from "./components/Preloader";
 import TimelinePath from "./components/TimelinePathFramer";
+import TimelineMobile from "./components/TimelineMobile";
 import TextAlongPath from "./components/TextAlongPath/TextAlongPath";
 import ProjectsInline from "./components/ProjectsPage/ProjectsInline";
 import HorizontalScrollSection from "./components/HorizontalScroll/HorizontalScrollSection";
@@ -16,6 +17,7 @@ import StickyFooter from "./components/StickyFooter/StickyFooter";
 function App() {
   const container = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   
   // Scroll progress entre Hero et About
   const { scrollYProgress } = useScroll({
@@ -23,7 +25,18 @@ function App() {
     offset: ["start start", "end end"]
   });
 
-  // Preloader timer - adapté pour 9 mots
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Preloader timer
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
@@ -43,10 +56,8 @@ function App() {
       infinite: false,
     });
 
-    // Rendre Lenis accessible globalement pour d'autres composants
     (window as any).lenis = lenis;
 
-    // Support pour les liens d'ancrage
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a[href^="#"]');
@@ -83,7 +94,6 @@ function App() {
 
   return (
     <>
-      {/* PRELOADER avec AnimatePresence */}
       <AnimatePresence mode="wait">
         {isLoading && <Preloader />}
       </AnimatePresence>
@@ -91,42 +101,36 @@ function App() {
       <AnimatedBackground />
       <SideMenu />
 
-      {/* CONTAINER pour l'effet de transition (Hero + About) */}
       <main ref={container} style={{ position: 'relative', height: '200vh' }}>
         <HeroSection scrollYProgress={scrollYProgress} />
-        <AboutSection scrollYProgress={scrollYProgress} />
+        <AboutSection scrollYProgress={scrollYProgress} isMobile={isMobile} />
       </main>
 
-      {/* SECTIONS SUIVANTES (scroll normal) */}
       <div style={{ 
         position: 'relative', 
         zIndex: 10,
         background: '#0A0F2C'
       }}>
-        {/* Timeline Path */}
+        {/* Timeline - Desktop ou Mobile */}
         <section id="journey">
-          <TimelinePath />
+          {isMobile ? <TimelineMobile /> : <TimelinePath />}
         </section>
 
-        {/* ✅ TEXT ALONG PATH - Transition vers Projects */}
         <TextAlongPath />
 
-        {/* Projects Section */}
         <section id="projects">
           <ProjectsInline />
         </section>
 
-        {/* Horizontal Scroll - Transition vers Skills */}
         <HorizontalScrollSection />
 
-        {/* Sticky Footer - Contact Section */}
         <StickyFooter />
       </div>
     </>
   );
 }
 
-// HERO SECTION avec effet de zoom out et rotation
+// HERO SECTION
 const HeroSection = ({ scrollYProgress }: { scrollYProgress: any }) => {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
   const rotate = useTransform(scrollYProgress, [0, 1], [0, -5]);
@@ -150,8 +154,8 @@ const HeroSection = ({ scrollYProgress }: { scrollYProgress: any }) => {
   );
 };
 
-// ABOUT SECTION avec effet de zoom in et rotation inverse
-const AboutSection = ({ scrollYProgress }: { scrollYProgress: any }) => {
+// ABOUT SECTION - Responsive pour tous les mobiles
+const AboutSection = ({ scrollYProgress, isMobile }: { scrollYProgress: any; isMobile: boolean }) => {
   const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
   const rotate = useTransform(scrollYProgress, [0, 1], [5, 0]);
 
@@ -162,7 +166,9 @@ const AboutSection = ({ scrollYProgress }: { scrollYProgress: any }) => {
         scale, 
         rotate,
         position: 'relative',
-        height: '100vh'
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column'
       }}
     >
       {/* Overlay flou */}
@@ -184,48 +190,62 @@ const AboutSection = ({ scrollYProgress }: { scrollYProgress: any }) => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: isMobile ? "flex-start" : "center",
+        padding: isMobile ? "20px 15px" : "0"
       }}>
         {/* Titre About Me */}
         <div style={{ 
-          position: "absolute",
-          top: "30px",
-          zIndex: 10
+          position: isMobile ? "relative" : "absolute",
+          top: isMobile ? "0" : "30px",
+          zIndex: 10,
+          marginBottom: isMobile ? "auto" : "0",
+          paddingTop: isMobile ? "10px" : "0"
         }}>
           <h2 style={{
-            fontSize: "clamp(1.6rem, 8vw, 10rem)",
+            fontSize: isMobile ? "clamp(1.5rem, 7vw, 2.2rem)" : "clamp(1.6rem, 8vw, 10rem)",
             fontWeight: 900,
             fontFamily: "'Departure Mono', 'Courier New', monospace",
             color: "#ffffff",
-            margin: 0
+            margin: 0,
+            textAlign: "center"
           }}>
             About Me
           </h2>
         </div>
 
-        {/* Mouse Trail Gallery */}
-        <MouseTrailGallery />
+        {/* Mouse Trail Gallery - Desktop only */}
+        {!isMobile && <MouseTrailGallery />}
 
         {/* Texte About */}
         <div style={{ 
-          position: "absolute",
-          bottom: "40px",
-          maxWidth: "700px",
-          padding: "20px 30px",
+          position: isMobile ? "relative" : "absolute",
+          bottom: isMobile ? "0" : "40px",
+          maxWidth: isMobile ? "100%" : "700px",
+          padding: isMobile ? "15px" : "20px 30px",
           color: "white",
           textAlign: "center",
-          fontSize: "0.95rem",
-          lineHeight: "1.7",
+          fontSize: isMobile ? "0.75rem" : "0.95rem",
+          lineHeight: isMobile ? "1.5" : "1.7",
           fontFamily: "'Departure Mono', 'Courier New', monospace",
           zIndex: 10,
           background: "rgba(10, 15, 44, 0.6)",
           backdropFilter: "blur(8px)",
-          borderRadius: "20px"
+          borderRadius: "20px",
+          marginTop: isMobile ? "auto" : "0",
+          marginBottom: isMobile ? "20px" : "0"
         }}>
-          <p style={{ marginBottom: "12px", opacity: 0.95 }}>
+          <p style={{ 
+            marginBottom: isMobile ? "10px" : "12px", 
+            opacity: 0.95,
+            fontSize: "inherit"
+          }}>
             I am Jean-Cedrik Dorelas, a web developer and computer engineering student with a strong interest in cybersecurity, passionate about building innovative and interactive digital experiences. I am currently pursuing studies in Computer Engineering while also training in Cybersecurity, allowing me to combine software development with a strong understanding of systems, security, and performance.
           </p>
-          <p style={{ opacity: 0.95, marginBottom: 0 }}>
+          <p style={{ 
+            opacity: 0.95, 
+            marginBottom: 0,
+            fontSize: "inherit"
+          }}>
             My background in athletics and basketball has shaped a disciplined and resilient mindset that values collaboration, continuous improvement, and personal excellence—qualities I bring into every technical and team-based project.
           </p>
         </div>
