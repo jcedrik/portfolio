@@ -1,0 +1,123 @@
+/* MouseTrailGalleryMobile.css - Auto-animated gallery for mobile */
+
+.mobile-gallery-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  overflow: hidden;
+}
+
+.mobile-gallery-image-wrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.mobile-gallery-image {
+  width: clamp(120px, 35vw, 180px);
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(46, 196, 255, 0.1);
+  border: 2px solid rgba(46, 196, 255, 0.2);
+}
+
+/* Dots indicator */
+.mobile-gallery-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+
+.mobile-gallery-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.mobile-gallery-dot.active {
+  background: #2EC4FF;
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(46, 196, 255, 0.5);
+}
+
+.mobile-gallery-dot:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Tablet adjustments */
+@media (min-width: 481px) and (max-width: 768px) {
+  .mobile-gallery-image {
+    width: clamp(140px, 30vw, 200px);
+  }
+
+  .mobile-gallery-dots {
+    bottom: 20px;
+    gap: 10px;
+  }
+
+  .mobile-gallery-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .mobile-gallery-container {
+    min-height: 200px;
+  }
+
+  .mobile-gallery-image {
+    width: clamp(100px, 32vw, 140px);
+    border-radius: 10px;
+  }
+
+  .mobile-gallery-dots {
+    bottom: 10px;
+    gap: 6px;
+  }
+
+  .mobile-gallery-dot {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* Very small mobile */
+@media (max-width: 375px) {
+  .mobile-gallery-container {
+    min-height: 120px;
+    max-height: 130px;
+  }
+
+  .mobile-gallery-image {
+    width: 60px;
+    max-width: 60px;
+    border-radius: 5px;
+    border-width: 1px;
+  }
+
+  .mobile-gallery-dots {
+    bottom: 2px;
+    gap: 3px;
+  }
+
+  .mobile-gallery-dot {
+    width: 4px;
+    height: 4px;
+  }
+}

@@ -9,6 +9,7 @@ import MouseTrailGallery from "./components/MouseTrailGallery";
 import Preloader from "./components/Preloader";
 import TimelinePath from "./components/TimelinePathFramer";
 import TimelineMobile from "./components/TimelineMobile";
+import MouseTrailGalleryMobile from "./components/MouseTrailGalleryMobile";
 import TextAlongPath from "./components/TextAlongPath/TextAlongPath";
 import ProjectsInline from "./components/ProjectsPage/ProjectsInline";
 import HorizontalScrollSection from "./components/HorizontalScroll/HorizontalScrollSection";
@@ -166,6 +167,26 @@ const AboutSection = ({ scrollYProgress, isMobile, isTablet }: { scrollYProgress
   const rotate = useTransform(scrollYProgress, [0, 1], [5, 0]);
   
   const isSmallScreen = isMobile || isTablet;
+  
+  // Detect iPhone SE size (375px or less)
+  const [isIPhoneSE, setIsIPhoneSE] = useState(false);
+  
+  useEffect(() => {
+    const checkSize = () => {
+      setIsIPhoneSE(window.innerWidth <= 375);
+    };
+    checkSize();
+    window.addEventListener('resize', checkSize);
+    return () => window.removeEventListener('resize', checkSize);
+  }, []);
+
+  // Short text for iPhone SE only
+  const shortText1 = "I'm Jean-Cedrik Dorelas, a web developer and computer engineering student passionate about cybersecurity and building interactive digital experiences.";
+  const shortText2 = "My athletics background shaped a disciplined mindset that values collaboration and continuous improvement.";
+  
+  // Full text for other devices
+  const fullText1 = "I am Jean-Cedrik Dorelas, a web developer and computer engineering student with a strong interest in cybersecurity, passionate about building innovative and interactive digital experiences. I am currently pursuing studies in Computer Engineering while also training in Cybersecurity, allowing me to combine software development with a strong understanding of systems, security, and performance.";
+  const fullText2 = "My background in athletics and basketball has shaped a disciplined and resilient mindset that values collaboration, continuous improvement, and personal excellence—qualities I bring into every technical and team-based project.";
 
   return (
     <motion.div
@@ -221,8 +242,9 @@ const AboutSection = ({ scrollYProgress, isMobile, isTablet }: { scrollYProgress
           </h2>
         </div>
 
-        {/* Mouse Trail Gallery - Desktop only (not on tablets) */}
+        {/* Mouse Trail Gallery - Desktop or Mobile version */}
         {!isSmallScreen && <MouseTrailGallery />}
+        {isSmallScreen && <MouseTrailGalleryMobile />}
 
         {/* Texte About */}
         <div style={{ 
@@ -247,14 +269,14 @@ const AboutSection = ({ scrollYProgress, isMobile, isTablet }: { scrollYProgress
             opacity: 0.95,
             fontSize: "inherit"
           }}>
-            I am Jean-Cedrik Dorelas, a web developer and computer engineering student with a strong interest in cybersecurity, passionate about building innovative and interactive digital experiences. I am currently pursuing studies in Computer Engineering while also training in Cybersecurity, allowing me to combine software development with a strong understanding of systems, security, and performance.
+            {isIPhoneSE ? shortText1 : fullText1}
           </p>
           <p style={{ 
             opacity: 0.95, 
             marginBottom: 0,
             fontSize: "inherit"
           }}>
-            My background in athletics and basketball has shaped a disciplined and resilient mindset that values collaboration, continuous improvement, and personal excellence—qualities I bring into every technical and team-based project.
+            {isIPhoneSE ? shortText2 : fullText2}
           </p>
         </div>
       </div>

@@ -33,6 +33,15 @@ export default function CapsulePhysics() {
     const width = container.clientWidth || 1200;
     const height = container.clientHeight || 500;
 
+    // Responsive sizing
+    const isSmall = width < 500;
+    const isMedium = width >= 500 && width < 900;
+    
+    const charWidth = isSmall ? 9 : isMedium ? 11 : 15;
+    const basePadding = isSmall ? 25 : isMedium ? 32 : 40;
+    const capsuleHeight = isSmall ? 30 : isMedium ? 36 : 40;
+    const fontSize = isSmall ? 10 : isMedium ? 12 : 13;
+
     // Engine
     const engine = Engine.create();
     engine.gravity.y = 1;
@@ -49,25 +58,37 @@ export default function CapsulePhysics() {
       },
     });
 
-    // Walls
-    const wallOptions = { isStatic: true, render: { visible: false } };
+    // Walls - thick walls to prevent any escape
+    const wallOptions = { isStatic: true, render: { visible: false }, friction: 1 };
+    const wallThickness = 200;
     const walls = [
-      Bodies.rectangle(width / 2, height + 25, width, 50, wallOptions),
-      Bodies.rectangle(-25, height / 2, 50, height, wallOptions),
-      Bodies.rectangle(width + 25, height / 2, 50, height, wallOptions),
-      Bodies.rectangle(width / 2, -25, width, 50, wallOptions),
+      // Bottom - below the container
+      Bodies.rectangle(width / 2, height + wallThickness / 2 - 10, width * 2, wallThickness, wallOptions),
+      // Left - outside left edge
+      Bodies.rectangle(-wallThickness / 2 + 10, height / 2, wallThickness, height * 2, wallOptions),
+      // Right - outside right edge  
+      Bodies.rectangle(width + wallThickness / 2 - 10, height / 2, wallThickness, height * 2, wallOptions),
+      // Top - above the container
+      Bodies.rectangle(width / 2, -wallThickness / 2 + 10, width * 2, wallThickness, wallOptions),
     ];
     Composite.add(engine.world, walls);
 
-    // Capsules
+    // Capsules - positioned in a grid that falls
     const capsules: Matter.Body[] = [];
     
+    const cols = isSmall ? 3 : 4;
+    
     skills.forEach((skill, i) => {
-      const capsuleWidth = skill.name.length * 15 + 40;
-      const capsuleHeight = 40;
+      const capsuleWidth = skill.name.length * charWidth + basePadding;
       
-      const startX = 100 + Math.random() * (width - 200);
-      const startY = 50 + (i % 3) * 60;
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+      
+      const spacingX = width / (cols + 1);
+      const spacingY = 50;
+      
+      const startX = spacingX * (col + 1) + (Math.random() - 0.5) * 30;
+      const startY = 40 + row * spacingY + (Math.random() - 0.5) * 15;
       
       const capsule = Bodies.rectangle(
         startX,
@@ -75,7 +96,7 @@ export default function CapsulePhysics() {
         capsuleWidth,
         capsuleHeight,
         {
-          chamfer: { radius: 20 },
+          chamfer: { radius: capsuleHeight / 2 },
           render: { fillStyle: skill.color },
           label: skill.name,
           restitution: 0.5,
@@ -118,7 +139,7 @@ export default function CapsulePhysics() {
         ctx.save();
         ctx.translate(x, y);
         ctx.rotate(angle);
-        ctx.font = "bold 13px 'Departure Mono', monospace";
+        ctx.font = `bold ${fontSize}px 'Departure Mono', monospace`;
         ctx.fillStyle = '#000';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';

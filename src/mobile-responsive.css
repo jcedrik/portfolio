@@ -51,9 +51,8 @@
    ============================================ */
 
 @media (max-width: 768px) {
-  /* Hide MouseTrailGallery completely */
-  .mouse-trail-gallery,
-  .mouse-trail-gallery * {
+  /* Hide DESKTOP MouseTrailGallery only - not the mobile version */
+  .mouse-trail-gallery {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -64,67 +63,181 @@
   #about {
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
-    padding: 20px 15px !important;
+    justify-content: flex-start !important;
+    padding: 20px 20px !important;
+    overflow: hidden !important;
   }
 
-  /* About Me title - fixed at top */
+  /* About Me title - at top */
   #about > div > div:first-child {
     position: relative !important;
     top: auto !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 15px !important;
+    flex-shrink: 0 !important;
   }
 
   #about h2 {
-    font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
+    font-size: clamp(1.6rem, 7vw, 2.2rem) !important;
   }
 
-  /* About text container - fixed at bottom */
+  /* Mobile gallery container */
+  .mobile-gallery-container {
+    flex: 1 !important;
+    min-height: 220px !important;
+    max-height: 280px !important;
+  }
+
+  /* About text container */
   #about > div > div:last-child {
     position: relative !important;
     bottom: auto !important;
     max-width: 100% !important;
-    padding: 15px 20px !important;
-    font-size: 0.8rem !important;
-    line-height: 1.6 !important;
-    margin-top: auto !important;
+    padding: 18px 20px !important;
+    font-size: 0.78rem !important;
+    line-height: 1.55 !important;
+    margin-top: 15px !important;
+    flex-shrink: 0 !important;
   }
 
   #about > div > div:last-child p {
-    font-size: 0.8rem !important;
+    font-size: 0.78rem !important;
     margin-bottom: 10px !important;
   }
 }
 
-@media (max-width: 480px) {
+/* ============================================
+   LARGE MOBILE (415px - 480px) - iPhone 14 Pro Max, etc.
+   ============================================ */
+
+@media (min-width: 415px) and (max-width: 480px) {
+  #about {
+    padding: 25px 25px !important;
+  }
+
   #about h2 {
-    font-size: clamp(1.5rem, 7vw, 2rem) !important;
+    font-size: 1.8rem !important;
+  }
+
+  .mobile-gallery-container {
+    min-height: 250px !important;
+    max-height: 300px !important;
   }
 
   #about > div > div:last-child {
-    padding: 12px 15px !important;
+    padding: 20px 22px !important;
+    font-size: 0.82rem !important;
+    line-height: 1.6 !important;
+    margin-top: 20px !important;
+  }
+
+  #about > div > div:last-child p {
+    font-size: 0.82rem !important;
+    margin-bottom: 12px !important;
+  }
+}
+
+/* ============================================
+   MEDIUM MOBILE (376px - 414px) - iPhone XR, iPhone 12, etc.
+   ============================================ */
+
+@media (min-width: 376px) and (max-width: 414px) {
+  #about {
+    padding: 18px 18px !important;
+  }
+
+  #about h2 {
+    font-size: 1.6rem !important;
+  }
+
+  .mobile-gallery-container {
+    min-height: 200px !important;
+    max-height: 240px !important;
+  }
+
+  #about > div > div:last-child {
+    padding: 15px 18px !important;
     font-size: 0.75rem !important;
+    line-height: 1.5 !important;
+    margin-top: 15px !important;
   }
 
   #about > div > div:last-child p {
     font-size: 0.75rem !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 10px !important;
   }
 }
 
-@media (max-width: 375px) {
+/* ============================================
+   SMALL MOBILE (321px - 375px) - iPhone SE, iPhone 8, etc.
+   ============================================ */
+
+@media (min-width: 321px) and (max-width: 375px) {
+  #about {
+    padding: 10px 10px !important;
+  }
+
   #about h2 {
-    font-size: 1.4rem !important;
+    font-size: 1.2rem !important;
+    margin-bottom: 5px !important;
+  }
+
+  /* Small gallery for iPhone SE */
+  .mobile-gallery-container {
+    display: block !important;
+    min-height: 120px !important;
+    max-height: 130px !important;
+  }
+
+  .mobile-gallery-image {
+    width: 60px !important;
+    max-width: 60px !important;
   }
 
   #about > div > div:last-child {
     padding: 10px 12px !important;
-    font-size: 0.7rem !important;
+    font-size: 0.58rem !important;
+    line-height: 1.35 !important;
+    margin-top: 8px !important;
+    border-radius: 12px !important;
+    margin-bottom: 10px !important;
   }
 
   #about > div > div:last-child p {
-    font-size: 0.7rem !important;
-    line-height: 1.5 !important;
+    font-size: 0.58rem !important;
+    margin-bottom: 6px !important;
+  }
+}
+
+/* ============================================
+   VERY SMALL MOBILE (320px and below)
+   ============================================ */
+
+@media (max-width: 320px) {
+  #about {
+    padding: 10px 10px !important;
+  }
+
+  #about h2 {
+    font-size: 1.2rem !important;
+    margin-bottom: 5px !important;
+  }
+
+  .mobile-gallery-container {
+    min-height: 130px !important;
+    max-height: 150px !important;
+  }
+
+  #about > div > div:last-child {
+    padding: 10px 12px !important;
+    font-size: 0.6rem !important;
+    line-height: 1.4 !important;
+    margin-top: 8px !important;
+    border-radius: 12px !important;
+  }
+
+  #about > div > div:last-child p {
+    font-size: 0.6rem !important;
+    margin-bottom: 6px !important;
   }
 }
 
@@ -316,13 +429,13 @@
 }
 
 /* ============================================
-   STICKY FOOTER (Contact) - Fix transition from Skills
+   STICKY FOOTER (Contact) - Compact layout on mobile
    ============================================ */
 
 @media (max-width: 768px) {
   .footer-container {
     height: auto !important;
-    min-height: 100vh !important;
+    min-height: auto !important;
     clip-path: none !important;
     position: relative !important;
   }
@@ -330,15 +443,18 @@
   .footer-sticky-wrapper {
     position: relative !important;
     height: auto !important;
-    min-height: 100vh !important;
+    min-height: auto !important;
+    bottom: auto !important;
   }
 
   .footer-content {
-    padding: 50px 20px 40px 20px !important;
-    min-height: 100vh !important;
+    padding: 40px 20px 30px 20px !important;
+    height: auto !important;
+    min-height: auto !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
+    gap: 30px !important;
   }
 
   .footer-top {
@@ -376,7 +492,7 @@
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 20px !important;
-    margin-top: auto !important;
+    margin-top: 0 !important;
   }
 
   .footer-title {
