@@ -1,86 +1,351 @@
-/* TimelinePath.css - Version Framer Motion - CORRIGÉ */
+/* Timeline - Fully Responsive for All Devices */
 
-.timeline-path-section {
-  width: 100vw;
-  position: relative;
-  padding: 100px 0 50px 0;
-  min-height: 350vh; /* AUGMENTÉ pour plus d'espace */
-  background: #0A0F2C;
-}
-
-.timeline-content {
-  position: relative;
+.timeline-section {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  min-height: 100vh;
+  background: #0A0F2C;
+  padding: 60px 20px;
+  overflow: hidden;
 }
 
-#svg-stage {
-  max-width: 650px;
-  margin: 0 auto;
-  display: block;
-  overflow: visible;
+.timeline-title {
+  text-align: center;
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  color: #2EC4FF;
+  margin-bottom: 40px;
+  font-family: 'Departure Mono', monospace;
+  font-weight: 900;
 }
 
-.timeline-text {
-  font-family: 'Departure Mono', 'Courier New', monospace;
-  color: #ffffff;
-  font-size: clamp(13px, 1.2vw, 17px);
-  width: clamp(180px, 28vw, 400px);
+.timeline-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+/* The vertical line - wrapper inside items */
+.timeline-line-wrapper {
   position: absolute;
-  line-height: 1.8;
-  font-weight: 400;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  z-index: 0;
 }
 
-.timeline-text p {
-  margin: 0;
+.timeline-line-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(46, 196, 255, 0.2);
+  border-radius: 2px;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #2EC4FF;
+  border-radius: 2px;
+  box-shadow: 0 0 15px rgba(46, 196, 255, 0.8);
+}
+
+/* Timeline items container */
+.timeline-items {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+/* Each timeline item */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 0 30px;
+}
+
+.timeline-item.left {
+  align-self: flex-start;
+  text-align: right;
+  padding-right: 45px;
+}
+
+.timeline-item.right {
+  align-self: flex-end;
+  text-align: left;
+  padding-left: 45px;
+}
+
+/* The dot on the line */
+.timeline-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #2EC4FF;
+  border-radius: 50%;
+  top: 8px;
+  box-shadow: 0 0 15px rgba(46, 196, 255, 1);
+}
+
+.timeline-item.left .timeline-dot {
+  right: -7px;
+}
+
+.timeline-item.right .timeline-dot {
+  left: -7px;
+}
+
+/* Content card */
+.timeline-card {
+  background: rgba(46, 196, 255, 0.1);
+  border: 1px solid rgba(46, 196, 255, 0.3);
+  border-radius: 12px;
+  padding: 15px 18px;
+  backdrop-filter: blur(10px);
+}
+
+.timeline-year {
+  display: inline-block;
+  font-family: 'Departure Mono', monospace;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 700;
+  color: #2EC4FF;
+  margin-bottom: 8px;
+}
+
+.timeline-description {
+  font-family: 'Departure Mono', monospace;
+  font-size: clamp(0.75rem, 1.5vw, 0.95rem);
   color: #ffffff;
+  line-height: 1.5;
+  margin: 0;
 }
 
-/* Responsive */
+/* Conclusion */
+.timeline-conclusion {
+  margin-top: 50px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 20px;
+  background: rgba(46, 196, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(46, 196, 255, 0.2);
+}
+
+.timeline-conclusion p {
+  font-family: 'Departure Mono', monospace;
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  color: #ffffff;
+  line-height: 1.7;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* ============================================
+   TABLET (max-width: 1024px)
+   ============================================ */
 @media (max-width: 1024px) {
-  .timeline-path-section {
-    min-height: 380vh; /* Plus de hauteur sur tablet */
+  .timeline-section {
+    padding: 50px 15px;
   }
 
-  #svg-stage {
-    max-width: 450px;
+  .timeline-title {
+    margin-bottom: 35px;
   }
-  
-  .timeline-text {
-    font-size: clamp(12px, 1.5vw, 15px);
-    width: clamp(150px, 30vw, 300px);
+
+  .timeline-items {
+    gap: 30px;
+  }
+
+  .timeline-item {
+    padding: 0 25px;
+  }
+
+  .timeline-item.left {
+    padding-right: 40px;
+  }
+
+  .timeline-item.right {
+    padding-left: 40px;
+  }
+
+  .timeline-card {
+    padding: 12px 16px;
   }
 }
 
+/* ============================================
+   MOBILE (max-width: 768px) - Single column
+   ============================================ */
 @media (max-width: 768px) {
-  .timeline-path-section {
-    padding: 80px 20px;
-    min-height: 320vh;
+  .timeline-section {
+    padding: 50px 15px;
   }
 
-  #svg-stage {
-    max-width: 350px;
+  .timeline-title {
+    margin-bottom: 40px;
   }
-  
-  .timeline-text {
-    font-size: 12px;
-    width: 140px;
-    line-height: 1.6;
+
+  .timeline-container {
+    padding: 10px 0;
+  }
+
+  /* Move line to the left */
+  .timeline-line-wrapper {
+    left: 20px;
+    transform: none;
+  }
+
+  .timeline-items {
+    gap: 40px;
+  }
+
+  /* All items on the right */
+  .timeline-item,
+  .timeline-item.left,
+  .timeline-item.right {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 10px;
+    text-align: left;
+    align-self: flex-start;
+  }
+
+  /* Dots on the left */
+  .timeline-dot,
+  .timeline-item.left .timeline-dot,
+  .timeline-item.right .timeline-dot {
+    left: -35px;
+    right: auto;
+    width: 16px;
+    height: 16px;
+  }
+
+  .timeline-card {
+    padding: 15px 18px;
+    border-radius: 12px;
+  }
+
+  .timeline-conclusion {
+    margin-top: 50px;
+    padding: 20px;
   }
 }
 
+/* ============================================
+   SMALL MOBILE (max-width: 480px)
+   ============================================ */
 @media (max-width: 480px) {
-  .timeline-path-section {
-    min-height: 280vh;
+  .timeline-section {
+    padding: 40px 10px;
   }
 
-  #svg-stage {
-    max-width: 280px;
+  .timeline-title {
+    margin-bottom: 30px;
   }
-  
-  .timeline-text {
-    font-size: 10px;
-    width: 110px;
+
+  .timeline-line-wrapper {
+    left: 15px;
+    width: 3px;
+  }
+
+  .timeline-items {
+    gap: 30px;
+  }
+
+  .timeline-item,
+  .timeline-item.left,
+  .timeline-item.right {
+    padding-left: 40px;
+    padding-right: 5px;
+  }
+
+  .timeline-dot,
+  .timeline-item.left .timeline-dot,
+  .timeline-item.right .timeline-dot {
+    left: -30px;
+    width: 14px;
+    height: 14px;
+  }
+
+  .timeline-card {
+    padding: 12px 14px;
+    border-radius: 10px;
+  }
+
+  .timeline-conclusion {
+    margin-top: 40px;
+    padding: 15px;
+    border-radius: 15px;
+  }
+}
+
+/* ============================================
+   VERY SMALL MOBILE (max-width: 375px) - iPhone SE
+   ============================================ */
+@media (max-width: 375px) {
+  .timeline-section {
+    padding: 30px 8px;
+  }
+
+  .timeline-title {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+
+  .timeline-line-wrapper {
+    left: 12px;
+    width: 2px;
+  }
+
+  .timeline-items {
+    gap: 25px;
+  }
+
+  .timeline-item,
+  .timeline-item.left,
+  .timeline-item.right {
+    padding-left: 35px;
+    padding-right: 5px;
+  }
+
+  .timeline-dot,
+  .timeline-item.left .timeline-dot,
+  .timeline-item.right .timeline-dot {
+    left: -26px;
+    width: 12px;
+    height: 12px;
+  }
+
+  .timeline-card {
+    padding: 10px 12px;
+  }
+
+  .timeline-year {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  .timeline-description {
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .timeline-conclusion {
+    margin-top: 30px;
+    padding: 12px;
+  }
+
+  .timeline-conclusion p {
+    font-size: 0.7rem;
+    line-height: 1.6;
   }
 }
