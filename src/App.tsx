@@ -181,11 +181,11 @@ const AboutSection = ({ scrollYProgress, isMobile, isTablet }: { scrollYProgress
   }, []);
 
   // Short text for iPhone SE only
-  const shortText1 = "I'm Jean-Cedrik Dorelas, a web developer and computer engineering student passionate about cybersecurity and building interactive digital experiences.";
+  const shortText1 = "I'm Jean-Cedrik Dorelas, a software developer and computer engineering student passionate about cybersecurity and building interactive digital experiences.";
   const shortText2 = "My athletics background shaped a disciplined mindset that values collaboration and continuous improvement.";
   
   // Full text for other devices
-  const fullText1 = "I am Jean-Cedrik Dorelas, a web developer and computer engineering student with a strong interest in cybersecurity, passionate about building innovative and interactive digital experiences. I am currently pursuing studies in Computer Engineering while also training in Cybersecurity, allowing me to combine software development with a strong understanding of systems, security, and performance.";
+  const fullText1 = "I am Jean-Cedrik Dorelas, a software developer and computer engineering student with a strong interest in cybersecurity, passionate about building innovative and interactive digital experiences. I am currently pursuing studies in Computer Engineering while also training in Cybersecurity, allowing me to combine software development with a strong understanding of systems, security, and performance.";
   const fullText2 = "My background in athletics and basketball has shaped a disciplined and resilient mindset that values collaboration, continuous improvement, and personal excellence—qualities I bring into every technical and team-based project.";
 
   return (
