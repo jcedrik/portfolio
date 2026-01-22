@@ -23,10 +23,6 @@ const timelineData: TimelineItem[] = [
   {
     year: '2023',
     description: 'BSc (Cumulative) in Cybersecurity - Ongoing, Polytechnique Montréal'
-  },
-  {
-    year: '2025',
-    description: 'Software Developer & SEO Specialist (Freelance), Dr. Ali Izadpanah'
   }
 ];
 

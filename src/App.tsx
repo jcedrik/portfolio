@@ -11,6 +11,7 @@ import TimelinePath from "./components/TimelinePathFramer";
 import TimelineMobile from "./components/TimelineMobile";
 import MouseTrailGalleryMobile from "./components/MouseTrailGalleryMobile";
 import TextAlongPath from "./components/TextAlongPath/TextAlongPath";
+import ProjectsList from "./components/ProjectsList/ProjectsList"; // Osmo style projects list
 import ProjectsInline from "./components/ProjectsPage/ProjectsInline";
 import HorizontalScrollSection from "./components/HorizontalScroll/HorizontalScrollSection";
 import StickyFooter from "./components/StickyFooter/StickyFooter";
@@ -118,13 +119,17 @@ function App() {
         zIndex: 10,
         background: '#0A0F2C'
       }}>
-        {/* Timeline - Use simple version for mobile AND tablets */}
+        {/* Timeline - Education & Experience */}
         <section id="journey">
           {useSimpleTimeline ? <TimelineMobile /> : <TimelinePath />}
         </section>
 
+        {/* Projects List with Osmo Cursor Preview - After Timeline */}
+        <ProjectsList />
+
         <TextAlongPath />
 
+        {/* Detailed Project Cards */}
         <section id="projects">
           <ProjectsInline />
         </section>

@@ -1,13 +1,12 @@
 import { motion } from 'framer-motion';
 import './TimelineMobile.css';
 
-// Timeline data
+// Timeline data - sans Dr. Ali (maintenant dans ProjectsList)
 const timelineData = [
   { year: "2020", title: "DEC in Health and Life Sciences, TAV College" },
   { year: "2021", title: "Data Entry Officer, Biron Groupe Santé" },
   { year: "2021", title: "BEng in Computer Engineering - Ongoing, Concordia University" },
   { year: "2023", title: "BSc (Cumulative) in Cybersecurity - Ongoing, Polytechnique Montréal" },
-  { year: "2025", title: "Software Developer & SEO Specialist (Freelance), Dr. Ali Izadpanah" },
 ];
 
 const conclusionText = "My path has been shaped by curiosity and a constant desire to understand how things work beneath the surface. I enjoy building, breaking, and improving systems, blending creativity with technical rigor. Through engineering, cybersecurity, and personal projects, I've learned to grow through experimentation and discipline. I'm now preparing for the OSCP certification, pushing myself further into hands-on security while continuing to evolve as both a technologist and a problem solver.";
