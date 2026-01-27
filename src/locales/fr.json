@@ -79,10 +79,10 @@
     "challengeLabel": "Défi"
   },
   "skills": {
-    "title": "Compétences",
+    "title": "Mes outils",
     "subtitle": "Glissez et jouez avec les technologies que je maîtrise",
-    "explore": "À présent, explorons",
-    "sectionTitle": "Mes Outils",
+    "explore": "À présent, explorons mes",
+    "sectionTitle": "Compétences",
     "keepScrolling": "Continuez à défiler"
   },
   "footer": {
