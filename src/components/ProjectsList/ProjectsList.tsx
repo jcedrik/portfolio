@@ -52,7 +52,7 @@ const projects: Project[] = [
 const ProjectsList = () => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   
   // Fallback for location/services if key not found
   const getTranslation = (key: string, fallback: string) => {
