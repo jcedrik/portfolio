@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import Lenis from '@studio-freight/lenis';
 import AnimatedBackground from "./components/AnimatedBackground";
 import SideMenu from "./components/SideMenu";
@@ -166,10 +167,11 @@ const HeroSection = ({ scrollYProgress }: { scrollYProgress: any }) => {
   );
 };
 
-// ABOUT SECTION - Responsive pour mobiles et tablettes
+// ABOUT SECTION - Responsive pour mobiles et tablettes avec i18n
 const AboutSection = ({ scrollYProgress, isMobile, isTablet }: { scrollYProgress: any; isMobile: boolean; isTablet: boolean }) => {
   const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
   const rotate = useTransform(scrollYProgress, [0, 1], [5, 0]);
+  const { t } = useTranslation();
   
   const isSmallScreen = isMobile || isTablet;
   
@@ -184,14 +186,6 @@ const AboutSection = ({ scrollYProgress, isMobile, isTablet }: { scrollYProgress
     window.addEventListener('resize', checkSize);
     return () => window.removeEventListener('resize', checkSize);
   }, []);
-
-  // Short text for iPhone SE only
-  const shortText1 = "I'm Jean-Cedrik Dorelas, a software developer and computer engineering student passionate about cybersecurity and building interactive digital experiences.";
-  const shortText2 = "My athletics background shaped a disciplined mindset that values collaboration and continuous improvement.";
-  
-  // Full text for other devices
-  const fullText1 = "I am Jean-Cedrik Dorelas, a software developer and computer engineering student with a strong interest in cybersecurity, passionate about building innovative and interactive digital experiences. I am currently pursuing studies in Computer Engineering while also training in Cybersecurity, allowing me to combine software development with a strong understanding of systems, security, and performance.";
-  const fullText2 = "My background in athletics and basketball has shaped a disciplined and resilient mindset that values collaboration, continuous improvement, and personal excellence—qualities I bring into every technical and team-based project.";
 
   return (
     <motion.div
@@ -231,9 +225,12 @@ const AboutSection = ({ scrollYProgress, isMobile, isTablet }: { scrollYProgress
         <div style={{ 
           position: isMobile ? "relative" : "absolute",
           top: isMobile ? "0" : "30px",
-          zIndex: 10,
+          zIndex: 20,
           marginBottom: isMobile ? "auto" : "0",
-          paddingTop: isMobile ? "10px" : "0"
+          paddingTop: isMobile ? "10px" : "0",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center"
         }}>
           <h2 style={{
             fontSize: isMobile ? "clamp(1.5rem, 7vw, 2.2rem)" : isTablet ? "clamp(2rem, 6vw, 3rem)" : "clamp(1.6rem, 8vw, 10rem)",
@@ -241,9 +238,11 @@ const AboutSection = ({ scrollYProgress, isMobile, isTablet }: { scrollYProgress
             fontFamily: "'Departure Mono', 'Courier New', monospace",
             color: "#ffffff",
             margin: 0,
-            textAlign: "center"
+            textAlign: "center",
+            position: "relative",
+            zIndex: 20
           }}>
-            About Me
+            {t('about.title')}
           </h2>
         </div>
 
@@ -254,13 +253,13 @@ const AboutSection = ({ scrollYProgress, isMobile, isTablet }: { scrollYProgress
         {/* Texte About */}
         <div style={{ 
           position: isMobile ? "relative" : "absolute",
-          bottom: isMobile ? "0" : "40px",
-          maxWidth: isMobile ? "100%" : isTablet ? "85%" : "700px",
-          padding: isMobile ? "15px" : isTablet ? "25px 35px" : "20px 30px",
+          bottom: isMobile ? "0" : "20px",
+          maxWidth: isMobile ? "100%" : isTablet ? "85%" : "750px",
+          padding: isMobile ? "15px" : isTablet ? "25px 35px" : "25px 35px",
           color: "white",
           textAlign: "center",
-          fontSize: isMobile ? "0.75rem" : isTablet ? "0.9rem" : "0.95rem",
-          lineHeight: isMobile ? "1.5" : "1.7",
+          fontSize: isMobile ? "0.75rem" : isTablet ? "0.85rem" : "0.88rem",
+          lineHeight: isMobile ? "1.5" : "1.6",
           fontFamily: "'Departure Mono', 'Courier New', monospace",
           zIndex: 10,
           background: "rgba(10, 15, 44, 0.6)",
@@ -274,14 +273,14 @@ const AboutSection = ({ scrollYProgress, isMobile, isTablet }: { scrollYProgress
             opacity: 0.95,
             fontSize: "inherit"
           }}>
-            {isIPhoneSE ? shortText1 : fullText1}
+            {isIPhoneSE ? t('about.shortParagraph1') : t('about.paragraph1')}
           </p>
           <p style={{ 
             opacity: 0.95, 
             marginBottom: 0,
             fontSize: "inherit"
           }}>
-            {isIPhoneSE ? shortText2 : fullText2}
+            {isIPhoneSE ? t('about.shortParagraph2') : t('about.paragraph2')}
           </p>
         </div>
       </div>

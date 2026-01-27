@@ -4,16 +4,19 @@
   width: 100%;
   position: relative;
   overflow: hidden;
+  z-index: 5;
 }
 
 .mouse-trail-gallery img {
-  width: 250px;  /* ✅ FIXE au lieu de 30vw */
-  height: 300px;  /* ✅ HAUTEUR FIXE */
-  object-fit: cover;  /* ✅ GARDE LE RATIO sans déformer */
+  width: 250px;
+  height: 300px;
+  object-fit: cover;
   position: absolute;
   display: none;
   transform: translateX(-50%) translateY(-50%);
   pointer-events: none;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 5 !important;
+  max-width: 250px;
 }

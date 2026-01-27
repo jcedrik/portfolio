@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import './ProjectsTitle.css';
 
 export default function ProjectsTitle() {
+  const { t } = useTranslation();
+  
   return (
     <div className="projects-title-container">
       <motion.div 
@@ -18,7 +21,7 @@ export default function ProjectsTitle() {
         >
           ↓
         </motion.span>
-        <h2 className="projects-title">PROJECTS</h2>
+        <h2 className="projects-title">{t('projects.title')}</h2>
         <motion.span 
           className="projects-arrow"
           animate={{ y: [0, 10, 0] }}

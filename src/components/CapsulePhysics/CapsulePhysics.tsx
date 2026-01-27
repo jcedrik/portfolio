@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import Matter from 'matter-js';
 import './CapsulePhysics.css';
 
@@ -23,6 +24,7 @@ const skills = [
 
 export default function CapsulePhysics() {
   const sceneRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!sceneRef.current) return;
@@ -166,8 +168,8 @@ export default function CapsulePhysics() {
 
   return (
     <section id="skills" className="capsule-physics-section">
-      <h2 className="capsule-physics-title">Skills</h2>
-      <p className="capsule-physics-subtitle">Drag and play with my tech stack</p>
+      <h2 className="capsule-physics-title">{t('skills.title')}</h2>
+      <p className="capsule-physics-subtitle">{t('skills.subtitle')}</p>
       <div ref={sceneRef} className="capsule-physics-container" />
     </section>
   );

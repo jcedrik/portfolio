@@ -1,7 +1,20 @@
+import { useTranslation } from 'react-i18next';
 import './StickyFooter.css';
 import Magnetic from './Magnetic';
 
 export default function StickyFooter() {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language?.substring(0, 2) || 'en';
+  
+  // CV file based on language
+  const cvFile = currentLang === 'fr' 
+    ? '/Jean-Cedrik_Dorelas_CV_FR.pdf' 
+    : '/Jean-Cedrik_Dorelas_CV_EN.pdf';
+  
+  const cvFileName = currentLang === 'fr'
+    ? 'Jean-Cedrik_Dorelas_CV_FR.pdf'
+    : 'Jean-Cedrik_Dorelas_CV_EN.pdf';
+
   return (
     <div className="footer-container" id="contact">
       <div className="footer-sticky-wrapper">
@@ -10,11 +23,11 @@ export default function StickyFooter() {
           <div className="footer-top">
             <div className="footer-nav">
               <div className="nav-column">
-                <h3 className="nav-heading">Menu</h3>
-                <a href="#about">About</a>
-                <a href="#journey">My Journey</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
+                <h3 className="nav-heading">{t('footer.menu')}</h3>
+                <a href="#about">{t('nav.about')}</a>
+                <a href="#journey">{t('nav.journey')}</a>
+                <a href="#projects">{t('nav.projects')}</a>
+                <a href="#skills">{t('nav.skills')}</a>
               </div>
             </div>
 
@@ -37,7 +50,7 @@ export default function StickyFooter() {
 
           {/* Bottom Section - Title & Social Icons */}
           <div className="footer-bottom">
-            <h1 className="footer-title">Let's Connect</h1>
+            <h1 className="footer-title">{t('footer.letsConnect')}</h1>
             
             <div className="footer-right">
               <div className="footer-social">
@@ -60,8 +73,8 @@ export default function StickyFooter() {
 
                 {/* Download CV */}
                 <a 
-                  href="/Jean-Cedrik_Dorelas_CV_EN.pdf" 
-                  download="Jean-Cedrik_Dorelas_CV_EN.pdf"
+                  href={cvFile}
+                  download={cvFileName}
                   className="cv-download-btn"
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,12 +82,12 @@ export default function StickyFooter() {
                     <path d="M7 10L12 15L17 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M12 15V3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span>Download CV</span>
+                  <span>{t('footer.downloadCV')}</span>
                 </a>
               </div>
 
-              <p className="footer-location">Based in Montréal, QC, Canada</p>
-              <p className="footer-copyright">© 2025 Jean-Cédrik Dorélas</p>
+              <p className="footer-location">{t('footer.location')}</p>
+              <p className="footer-copyright">{t('footer.copyright')}</p>
             </div>
           </div>
         </div>

@@ -1,0 +1,103 @@
+{
+  "nav": {
+    "about": "À propos",
+    "journey": "Mon parcours",
+    "projects": "Projets",
+    "skills": "Compétences",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Fermer"
+  },
+  "hero": {
+    "roles": [
+      "Jean-Cédrik Dorélas",
+      "Développeur logiciel",
+      "Étudiant en génie informatique",
+      "Passionné de cybersécurité"
+    ],
+    "scrollDown": "défiler vers le bas"
+  },
+  "about": {
+    "title": "À propos",
+    "paragraph1": "Je suis Jean-Cédrik Dorélas, développeur logiciel et étudiant en génie informatique avec un fort intérêt pour la cybersécurité, passionné par la création d'expériences numériques innovantes et interactives. Je poursuis actuellement des études en génie informatique tout en me formant en cybersécurité, ce qui me permet de combiner le développement logiciel avec une solide compréhension des systèmes, de la sécurité et de la performance.",
+    "paragraph2": "Ma pratique de l'athlétisme et du basketball m'a incité à adopter un état d'esprit discipliné et résilient valorisant la collaboration, l'amélioration continue et l'excellence personnelle — des qualités que j'apporte dans chaque projet technique et d'équipe.",
+    "shortParagraph1": "Je suis Jean-Cédrik Dorélas, développeur logiciel et étudiant en génie informatique passionné par la cybersécurité et la création d'expériences numériques interactives.",
+    "shortParagraph2": "Mon parcours athlétique a façonné un état d'esprit discipliné qui valorise la collaboration et l'amélioration continue."
+  },
+  "journey": {
+    "title": "Mon parcours",
+    "conclusion": "Mon parcours a été façonné par la curiosité et un désir constant de comprendre comment les choses fonctionnent en profondeur. J'aime construire, déconstruire et améliorer les systèmes, en alliant créativité et rigueur technique. À travers l'ingénierie, la cybersécurité et mes projets personnels, j'ai appris à évoluer par l'expérimentation et la discipline. Je me prépare actuellement à la certification OSCP, me poussant plus loin dans la sécurité pratique tout en continuant à évoluer en tant que technologue et résolveur de problèmes.",
+    "items": {
+      "2020_tav": "DEC en Sciences de la nature, Collège TAV",
+      "2021_biron": "Agent de saisie de données, Biron Groupe Santé",
+      "2021_concordia": "B.Ing. en génie informatique - en cours, Université Concordia",
+      "2023_poly": "B.Sc. (cumulatif) en cybersécurité - en cours, Polytechnique Montréal"
+    }
+  },
+  "projects": {
+    "title": "PROJETS",
+    "selectedWork": "Travaux sélectionnés",
+    "client": "Client",
+    "location": "Lieu",
+    "year": "Année",
+    "type": "Type",
+    "seeWebsite": "Voir le site",
+    "viewCase": "Voir le projet",
+    "axiom": {
+      "location": "Montréal",
+      "services": "Design Web, Développement",
+      "description": "Développement d'une plateforme immobilière de luxe avec des composants UI sophistiqués, présentant une palette de couleurs noir/or/blanc et une typographie Cormorant Garamond. Construit avec React, TypeScript et des animations GSAP avancées pour une expérience utilisateur premium."
+    },
+    "drali": {
+      "location": "Montréal",
+      "services": "Design Web, SEO",
+      "description": "Refonte et optimisation du site web médical du Dr. Ali Izadpanah, améliorant la cohérence visuelle, la crédibilité et l'expérience patient. Implémentation du SEO on-page et raffinement des détails UX pour augmenter la clarté et la confiance."
+    },
+    "cards": {
+      "soc": {
+        "title": "SOC-in-a-Box — Labo Purple Team",
+        "description": "Conception et déploiement d'un environnement SOC complet, combinant télémétrie réseau, endpoint et SIEM. Axé sur la détection réelle, la réponse aux incidents et l'émulation d'adversaires.",
+        "challenge": "Concevoir des détections réalistes tout en minimisant les faux positifs à travers la télémétrie réseau et endpoint."
+      },
+      "fpga": {
+        "title": "Système de suivi d'occupation (FPGA)",
+        "description": "Conception et implémentation d'un système de suivi d'occupation de salle en VHDL, gérant les cas limites et validé par simulation et synthèse sur FPGA.",
+        "challenge": "Gestion des cas limites et synchronisation des signaux dans une machine à états finis implémentée sur FPGA."
+      },
+      "portfolio": {
+        "title": "Site web portfolio personnel",
+        "description": "Construction d'un site web personnel moderne axé sur la performance, avec un accent sur la clarté, l'UI et l'expérience recruteur. Développé avec des animations avancées et des composants interactifs.",
+        "challenge": "Équilibrer les animations avancées avec la performance, l'accessibilité et la convivialité orientées vers le recruteur."
+      },
+      "music": {
+        "title": "Projets musique house & DJ",
+        "description": "Exploration créative de la musique house à travers le DJing et la production musicale, mêlant structure, timing et design sonore.",
+        "challenge": "Traduire la structure musicale et le timing en sets DJ cohérents et en productions originales.",
+        "tags": "House · DJ · Production musicale · Créativité"
+      }
+    },
+    "challengeLabel": "Défi"
+  },
+  "skills": {
+    "title": "Compétences",
+    "subtitle": "Glissez et jouez avec les technologies que je maîtrise",
+    "explore": "À présent, explorons",
+    "sectionTitle": "Mes Outils",
+    "keepScrolling": "Continuez à défiler"
+  },
+  "footer": {
+    "menu": "Menu",
+    "letsConnect": "Contactez-moi",
+    "downloadCV": "Télécharger CV",
+    "location": "Basé à Montréal, QC, Canada",
+    "copyright": "© 2025 Jean-Cédrik Dorélas"
+  },
+  "social": {
+    "linkedin": "LinkedIn",
+    "email": "Courriel",
+    "phone": "Téléphone"
+  },
+  "language": {
+    "switchTo": "EN"
+  }
+}

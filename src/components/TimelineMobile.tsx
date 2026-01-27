@@ -1,20 +1,20 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import './TimelineMobile.css';
 
-// Timeline data - sans Dr. Ali (maintenant dans ProjectsList)
-const timelineData = [
-  { year: "2020", title: "DEC in Health and Life Sciences, TAV College" },
-  { year: "2021", title: "Data Entry Officer, Biron Groupe Santé" },
-  { year: "2021", title: "BEng in Computer Engineering - Ongoing, Concordia University" },
-  { year: "2023", title: "BSc (Cumulative) in Cybersecurity - Ongoing, Polytechnique Montréal" },
-];
-
-const conclusionText = "My path has been shaped by curiosity and a constant desire to understand how things work beneath the surface. I enjoy building, breaking, and improving systems, blending creativity with technical rigor. Through engineering, cybersecurity, and personal projects, I've learned to grow through experimentation and discipline. I'm now preparing for the OSCP certification, pushing myself further into hands-on security while continuing to evolve as both a technologist and a problem solver.";
-
 const TimelineMobile = () => {
+  const { t } = useTranslation();
+
+  const timelineData = [
+    { year: "2020", titleKey: "journey.items.2020_tav" },
+    { year: "2021", titleKey: "journey.items.2021_biron" },
+    { year: "2021", titleKey: "journey.items.2021_concordia" },
+    { year: "2023", titleKey: "journey.items.2023_poly" },
+  ];
+
   return (
     <section className="timeline-mobile-section" id="journey">
-      <h2 className="timeline-mobile-title">My Journey</h2>
+      <h2 className="timeline-mobile-title">{t('journey.title')}</h2>
       
       <div className="timeline-mobile-container">
         {timelineData.map((item, index) => (
@@ -29,7 +29,7 @@ const TimelineMobile = () => {
             <div className="timeline-mobile-dot" />
             <div className="timeline-mobile-content">
               <span className="timeline-mobile-year">{item.year}</span>
-              <p className="timeline-mobile-text">{item.title}</p>
+              <p className="timeline-mobile-text">{t(item.titleKey)}</p>
             </div>
           </motion.div>
         ))}
@@ -41,7 +41,7 @@ const TimelineMobile = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <p>{conclusionText}</p>
+          <p>{t('journey.conclusion')}</p>
         </motion.div>
       </div>
     </section>

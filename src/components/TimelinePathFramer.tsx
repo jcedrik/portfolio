@@ -1,36 +1,19 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import './TimelinePathFramer.css';
-
-interface TimelineItem {
-  year: string;
-  description: string;
-}
-
-const timelineData: TimelineItem[] = [
-  {
-    year: '2020',
-    description: 'DEC in Health and Life Sciences, TAV College'
-  },
-  {
-    year: '2021',
-    description: 'Data Entry Officer, Biron Groupe Santé'
-  },
-  {
-    year: '2021',
-    description: 'BEng in Computer Engineering - Ongoing, Concordia University'
-  },
-  {
-    year: '2023',
-    description: 'BSc (Cumulative) in Cybersecurity - Ongoing, Polytechnique Montréal'
-  }
-];
-
-const conclusionText = "My path has been shaped by curiosity and a constant desire to understand how things work beneath the surface. I enjoy building, breaking, and improving systems, blending creativity with technical rigor. Through engineering, cybersecurity, and personal projects, I've learned to grow through experimentation and discipline. I'm now preparing for the OSCP certification, pushing myself further into hands-on security while continuing to evolve as both a technologist and a problem solver.";
 
 const TimelinePath = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
   
+  const timelineData = [
+    { year: '2020', descriptionKey: 'journey.items.2020_tav' },
+    { year: '2021', descriptionKey: 'journey.items.2021_biron' },
+    { year: '2021', descriptionKey: 'journey.items.2021_concordia' },
+    { year: '2023', descriptionKey: 'journey.items.2023_poly' }
+  ];
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
@@ -49,7 +32,7 @@ const TimelinePath = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        My Journey
+        {t('journey.title')}
       </motion.h2>
 
       {/* Timeline Container */}
@@ -86,7 +69,7 @@ const TimelinePath = () => {
               {/* Content Card */}
               <div className="timeline-card">
                 <span className="timeline-year">{item.year}</span>
-                <p className="timeline-description">{item.description}</p>
+                <p className="timeline-description">{t(item.descriptionKey)}</p>
               </div>
             </motion.div>
           ))}
@@ -100,7 +83,7 @@ const TimelinePath = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <p>{conclusionText}</p>
+          <p>{t('journey.conclusion')}</p>
         </motion.div>
       </div>
     </section>

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "./LanguageSwitcher";
 import "./SideMenu.css";
 
 // Animation 3D en perspective pour les titres
@@ -66,20 +68,6 @@ const menuVariants = {
   }
 };
 
-const navLinks = [
-  { title: "About", href: "#about" },
-  { title: "My Journey", href: "#journey" },
-  { title: "Projects", href: "#projects" },
-  { title: "Skills", href: "#skills" },
-  { title: "Contact", href: "#contact" },
-];
-
-const footerLinks = [
-  { title: "LinkedIn", href: "https://www.linkedin.com/in/jean-c%C3%A9drik-dor%C3%A9las-71a5a9356" },
-  { title: "Email", href: "mailto:jcedrik100@gmail.com" },
-  { title: "Phone", href: "tel:+14384029966" },
-];
-
 // Perspective Text Component (Olivier Larose style)
 function PerspectiveText({ label }: { label: string }) {
   return (
@@ -93,6 +81,21 @@ function PerspectiveText({ label }: { label: string }) {
 export default function SideMenu() {
   const [isActive, setIsActive] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { titleKey: "nav.about", href: "#about" },
+    { titleKey: "nav.journey", href: "#journey" },
+    { titleKey: "nav.projects", href: "#projects" },
+    { titleKey: "nav.skills", href: "#skills" },
+    { titleKey: "nav.contact", href: "#contact" },
+  ];
+
+  const footerLinks = [
+    { titleKey: "social.linkedin", href: "https://www.linkedin.com/in/jean-c%C3%A9drik-dor%C3%A9las-71a5a9356" },
+    { titleKey: "social.email", href: "mailto:jcedrik100@gmail.com" },
+    { titleKey: "social.phone", href: "tel:+14384029966" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -148,28 +151,45 @@ export default function SideMenu() {
                             setIsActive(false);
                           }}
                         >
-                          {link.title}
+                          {t(link.titleKey)}
                         </motion.a>
                       </div>
                     ))}
                   </div>
-                  <motion.div className="nav-footer">
-                    {footerLinks.map((link, i) => (
-                      <motion.a
-                        key={link.href}
-                        href={link.href}
-                        target={link.href.startsWith("http") ? "_blank" : undefined}
-                        rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        custom={i}
-                        variants={slideIn}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                      >
-                        {link.title}
-                      </motion.a>
-                    ))}
-                  </motion.div>
+                  
+                  {/* Footer section */}
+                  <div className="nav-footer-wrapper">
+                    {/* Social links line */}
+                    <motion.div className="nav-footer">
+                      {footerLinks.map((link, i) => (
+                        <motion.a
+                          key={link.href}
+                          href={link.href}
+                          target={link.href.startsWith("http") ? "_blank" : undefined}
+                          rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          custom={i}
+                          variants={slideIn}
+                          initial="hidden"
+                          animate="visible"
+                          exit="exit"
+                        >
+                          {t(link.titleKey)}
+                        </motion.a>
+                      ))}
+                    </motion.div>
+                    
+                    {/* Language switcher on separate line */}
+                    <motion.div 
+                      className="nav-language"
+                      custom={footerLinks.length}
+                      variants={slideIn}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                    >
+                      <LanguageSwitcher />
+                    </motion.div>
+                  </div>
                 </div>
               )}
             </AnimatePresence>
@@ -183,10 +203,10 @@ export default function SideMenu() {
               transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] as const }}
             >
               <div className="menu-el" onClick={() => setIsActive(!isActive)}>
-                <PerspectiveText label="Menu" />
+                <PerspectiveText label={t('nav.menu')} />
               </div>
               <div className="menu-el" onClick={() => setIsActive(!isActive)}>
-                <PerspectiveText label="Close" />
+                <PerspectiveText label={t('nav.close')} />
               </div>
             </motion.div>
           </div>

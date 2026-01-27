@@ -1,11 +1,12 @@
 import { useTransform, motion, useScroll, MotionValue } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface CardProps {
   i: number;
-  title: string;
-  description: string;
-  challenge?: string;
+  titleKey: string;
+  descriptionKey: string;
+  challengeKey?: string;
   src: string;
   link?: string;
   color: string;
@@ -16,13 +17,14 @@ interface CardProps {
   scaleRange?: [number, number];
   objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
   tags?: string;
+  tagsKey?: string;
 }
 
 const Card = ({
   i, 
-  title, 
-  description, 
-  challenge, 
+  titleKey, 
+  descriptionKey, 
+  challengeKey, 
   src, 
   color, 
   progress, 
@@ -31,11 +33,13 @@ const Card = ({
   imagePosition = 'center', 
   scaleRange = [2, 1], 
   objectFit = 'cover', 
-  tags
+  tags,
+  tagsKey
 }: CardProps) => {
 
   const container = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const { t, i18n } = useTranslation();
 
   // Check if mobile
   useEffect(() => {
@@ -55,6 +59,12 @@ const Card = ({
 
   const imageScale = useTransform(scrollYProgress, [0, 1], scaleRange)
   const scale = useTransform(progress, range, [1, targetScale]);
+
+  // Get challenge label based on language
+  const challengeLabel = i18n.language?.startsWith('fr') ? 'Défi' : 'Challenge';
+  
+  // Get tags - use translated tags if tagsKey exists, otherwise use default tags
+  const displayTags = tagsKey ? t(tagsKey) : tags;
 
   // Styles for desktop
   const desktopStyles = {
@@ -268,20 +278,20 @@ const Card = ({
       style={styles.container}
     >
       <motion.div style={styles.card}>
-        <h2 style={styles.title}>{title}</h2>
+        <h2 style={styles.title}>{t(titleKey)}</h2>
         
         <div style={styles.body}>
           <div style={styles.textContent}>
-            <p style={styles.description}>{description}</p>
+            <p style={styles.description}>{t(descriptionKey)}</p>
             
-            {challenge && (
+            {challengeKey && (
               <p style={styles.challenge}>
-                <strong style={{ fontStyle: 'normal' }}>Challenge:</strong> {challenge}
+                <strong style={{ fontStyle: 'normal' }}>{challengeLabel}:</strong> {t(challengeKey)}
               </p>
             )}
             
-            {tags && (
-              <p style={styles.tags}>{tags}</p>
+            {displayTags && (
+              <p style={styles.tags}>{displayTags}</p>
             )}
           </div>
 
@@ -289,7 +299,7 @@ const Card = ({
             <motion.div style={styles.imageInner}>
               <img
                 src={`/images/${src}`}
-                alt={title} 
+                alt={t(titleKey)} 
                 style={styles.image}
               />
             </motion.div>

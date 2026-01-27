@@ -1,16 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import './ProjectsList.css';
 
 interface Project {
   name: string;
-  location: string;
+  locationKey: string;
   year: string;
-  services: string;
+  servicesKey: string;
   image: string;
   link?: string;
-  description: string;
+  descriptionKey: string;
   tags: string[];
   gallery: string[];
 }
@@ -18,12 +19,12 @@ interface Project {
 const projects: Project[] = [
   {
     name: "Axiom Realty",
-    location: "Montreal",
+    locationKey: "projects.axiom.location",
     year: "2025",
-    services: "Web Design, Development",
+    servicesKey: "projects.axiom.services",
     image: "/images/axiomrealty_screenshot1.png",
     link: "https://axiomrealty.ca/",
-    description: "Developed a luxury real estate platform with sophisticated UI components, featuring black/gold/white color palettes and Cormorant Garamond typography. Built with React, TypeScript, and advanced GSAP animations for a premium user experience.",
+    descriptionKey: "projects.axiom.description",
     tags: ["Development", "Creative Dev", "React"],
     gallery: [
       "/images/axiomrealty_screenshot1.png",
@@ -33,12 +34,12 @@ const projects: Project[] = [
   },
   {
     name: "Dr. Ali Izadpanah",
-    location: "Montreal",
+    locationKey: "projects.drali.location",
     year: "2025",
-    services: "Web Design, SEO",
+    servicesKey: "projects.drali.services",
     image: "/images/drali_screenshot1.png",
     link: "#",
-    description: "Redesigned and optimized Dr. Ali Izadpanah's medical website, improving visual consistency, credibility, and patient experience. Implemented on-page SEO, and refined UX details to increase clarity and trust.",
+    descriptionKey: "projects.drali.description",
     tags: ["Web Design", "SEO", "UX / Performance"],
     gallery: [
       "/images/drali_screenshot1.png",
@@ -51,6 +52,13 @@ const projects: Project[] = [
 const ProjectsList = () => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const { t, i18n } = useTranslation();
+  
+  // Fallback for location/services if key not found
+  const getTranslation = (key: string, fallback: string) => {
+    const result = t(key);
+    return result === key ? fallback : result;
+  };
 
   useEffect(() => {
     const wrap = wrapRef.current;
@@ -69,30 +77,24 @@ const ProjectsList = () => {
     const duration = 0.5;
     const ease = 'power2.inOut';
 
-    // Initialize follower position
     gsap.set(follower, { xPercent: -50, yPercent: -50 });
 
-    // Quick setters for x/y
     const xTo = gsap.quickTo(follower, 'x', { duration: 0.6, ease: 'power3' });
     const yTo = gsap.quickTo(follower, 'y', { duration: 0.6, ease: 'power3' });
 
-    // Move follower on mousemove
     const handleMouseMove = (e: MouseEvent) => {
       xTo(e.clientX);
       yTo(e.clientY);
     };
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Enter/leave per item
     items.forEach((item, index) => {
       const handleMouseEnter = () => {
-        // Don't show cursor preview if item is expanded
         if (expandedIndex !== null) return;
         
         const forward = prevIndex === null || index > prevIndex;
         prevIndex = index;
 
-        // Animate out existing visuals
         follower.querySelectorAll('[data-follower-visual]').forEach((el) => {
           gsap.killTweensOf(el);
           gsap.to(el, {
@@ -104,13 +106,11 @@ const ProjectsList = () => {
           });
         });
 
-        // Clone & insert new visual
         const visual = item.querySelector('[data-follower-visual]');
         if (!visual) return;
         const clone = visual.cloneNode(true) as HTMLElement;
         followerInner.appendChild(clone);
 
-        // Animate it in (unless it's the very first entry)
         if (!firstEntry) {
           gsap.fromTo(clone,
             { yPercent: forward ? offset : -offset },
@@ -138,7 +138,6 @@ const ProjectsList = () => {
       item.addEventListener('mouseleave', handleMouseLeave);
     });
 
-    // If pointer leaves the collection, clear any visuals
     const handleCollectionLeave = () => {
       follower.querySelectorAll('[data-follower-visual]').forEach((el) => {
         gsap.killTweensOf(el);
@@ -149,7 +148,6 @@ const ProjectsList = () => {
     };
     collection.addEventListener('mouseleave', handleCollectionLeave);
 
-    // Cleanup
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       collection.removeEventListener('mouseleave', handleCollectionLeave);
@@ -162,30 +160,26 @@ const ProjectsList = () => {
 
   return (
     <section className="projects-list-section" id="work">
-      {/* Section Header */}
       <div className="projects-list-header">
-        <h2 className="projects-list-title">Selected Work</h2>
+        <h2 className="projects-list-title">{t('projects.selectedWork')}</h2>
       </div>
 
-      {/* Preview Container - Osmo Structure */}
       <div data-follower-wrap="" className="preview-container" ref={wrapRef}>
-        {/* Table Header */}
         <div className="preview-item__row preview-table-header tablet--hide">
           <div className="preview-item__col is--large">
-            <span className="preview-container__label">Client</span>
+            <span className="preview-container__label">{t('projects.client')}</span>
           </div>
           <div className="preview-item__col is--small">
-            <span className="preview-container__label">Location</span>
+            <span className="preview-container__label">{t('projects.location')}</span>
           </div>
           <div className="preview-item__col is--small">
-            <span className="preview-container__label">Year</span>
+            <span className="preview-container__label">{t('projects.year')}</span>
           </div>
           <div className="preview-item__col is--medium">
-            <span className="preview-container__label">Type</span>
+            <span className="preview-container__label">{t('projects.type')}</span>
           </div>
         </div>
 
-        {/* Projects Collection */}
         <div data-follower-collection="" className="preview-collection">
           <div className="preview-list">
             {projects.map((project, index) => (
@@ -194,7 +188,6 @@ const ProjectsList = () => {
                 data-follower-item="" 
                 className={`preview-item ${expandedIndex === index ? 'is-expanded' : ''}`}
               >
-                {/* Clickable Row */}
                 <div 
                   className="preview-item__inner"
                   onClick={() => handleItemClick(index)}
@@ -204,13 +197,13 @@ const ProjectsList = () => {
                       <h2 className="preview-item__heading">{project.name}</h2>
                     </div>
                     <div className="preview-item__col is--small tablet--hide">
-                      <p className="preview-item__text">{project.location}</p>
+                      <p className="preview-item__text">{getTranslation(project.locationKey, 'Montreal')}</p>
                     </div>
                     <div className="preview-item__col is--small">
                       <p className="preview-item__text">{project.year}</p>
                     </div>
                     <div className="preview-item__col is--medium">
-                      <p className="preview-item__text">{project.services}</p>
+                      <p className="preview-item__text">{getTranslation(project.servicesKey, 'Web Design')}</p>
                     </div>
                   </div>
                   <div data-follower-visual="" className="preview-item__visual">
@@ -222,7 +215,6 @@ const ProjectsList = () => {
                   </div>
                 </div>
 
-                {/* Expanded Content */}
                 <AnimatePresence>
                   {expandedIndex === index && (
                     <motion.div
@@ -233,12 +225,10 @@ const ProjectsList = () => {
                       transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
                     >
                       <div className="preview-item__expanded-content">
-                        {/* Description */}
                         <p className="preview-item__description">
-                          {project.description}
+                          {t(project.descriptionKey)}
                         </p>
 
-                        {/* See Website Button */}
                         {project.link && project.link !== '#' && (
                           <a
                             href={project.link}
@@ -247,11 +237,10 @@ const ProjectsList = () => {
                             className="preview-item__link"
                             onClick={(e) => e.stopPropagation()}
                           >
-                            See website
+                            {t('projects.seeWebsite')}
                           </a>
                         )}
 
-                        {/* Tags */}
                         <div className="preview-item__tags">
                           {project.tags.map((tag, i) => (
                             <div key={i} className="preview-item__tag">
@@ -261,7 +250,6 @@ const ProjectsList = () => {
                           ))}
                         </div>
 
-                        {/* Gallery */}
                         <div className="preview-item__gallery">
                           {project.gallery.map((img, i) => (
                             <div key={i} className="preview-item__gallery-img">
@@ -278,14 +266,13 @@ const ProjectsList = () => {
           </div>
         </div>
 
-        {/* Cursor Follower - Hidden when expanded */}
         <div 
           data-follower-cursor="" 
           className={`preview-follower ${expandedIndex !== null ? 'is-hidden' : ''}`}
         >
           <div data-follower-cursor-inner="" className="preview-follower__inner">
             <div className="preview-follower__label">
-              <div className="preview-follower__label-span">View case</div>
+              <div className="preview-follower__label-span">{t('projects.viewCase')}</div>
             </div>
           </div>
         </div>

@@ -1,0 +1,103 @@
+{
+  "nav": {
+    "about": "About",
+    "journey": "My Journey",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "hero": {
+    "roles": [
+      "Jean-Cédrik Dorélas",
+      "Software Developer",
+      "Computer Engineering Student",
+      "Cybersecurity Enthusiast"
+    ],
+    "scrollDown": "scroll down"
+  },
+  "about": {
+    "title": "About Me",
+    "paragraph1": "I am Jean-Cedrik Dorelas, a software developer and computer engineering student with a strong interest in cybersecurity, passionate about building innovative and interactive digital experiences. I am currently pursuing studies in Computer Engineering while also training in Cybersecurity, allowing me to combine software development with a strong understanding of systems, security, and performance.",
+    "paragraph2": "My background in athletics and basketball has shaped a disciplined and resilient mindset that values collaboration, continuous improvement, and personal excellence—qualities I bring into every technical and team-based project.",
+    "shortParagraph1": "I'm Jean-Cedrik Dorelas, a software developer and computer engineering student passionate about cybersecurity and building interactive digital experiences.",
+    "shortParagraph2": "My athletics background shaped a disciplined mindset that values collaboration and continuous improvement."
+  },
+  "journey": {
+    "title": "My Journey",
+    "conclusion": "My path has been shaped by curiosity and a constant desire to understand how things work beneath the surface. I enjoy building, breaking, and improving systems, blending creativity with technical rigor. Through engineering, cybersecurity, and personal projects, I've learned to grow through experimentation and discipline. I'm now preparing for the OSCP certification, pushing myself further into hands-on security while continuing to evolve as both a technologist and a problem solver.",
+    "items": {
+      "2020_tav": "DEC in Health and Life Sciences, TAV College",
+      "2021_biron": "Data Entry Officer, Biron Groupe Santé",
+      "2021_concordia": "BEng in Computer Engineering - Ongoing, Concordia University",
+      "2023_poly": "BSc (Cumulative) in Cybersecurity - Ongoing, Polytechnique Montréal"
+    }
+  },
+  "projects": {
+    "title": "PROJECTS",
+    "selectedWork": "Selected Work",
+    "client": "Client",
+    "location": "Location",
+    "year": "Year",
+    "type": "Type",
+    "seeWebsite": "See website",
+    "viewCase": "View case",
+    "axiom": {
+      "location": "Montreal",
+      "services": "Web Design, Development",
+      "description": "Developed a luxury real estate platform with sophisticated UI components, featuring black/gold/white color palettes and Cormorant Garamond typography. Built with React, TypeScript, and advanced GSAP animations for a premium user experience."
+    },
+    "drali": {
+      "location": "Montreal",
+      "services": "Web Design, SEO",
+      "description": "Redesigned and optimized Dr. Ali Izadpanah's medical website, improving visual consistency, credibility, and patient experience. Implemented on-page SEO, and refined UX details to increase clarity and trust."
+    },
+    "cards": {
+      "soc": {
+        "title": "SOC-in-a-Box — Purple Team Lab",
+        "description": "Designed and deployed an end-to-end SOC lab environment, combining network, endpoint, and SIEM telemetry. Focused on real-world detection, incident response, and adversary emulation.",
+        "challenge": "Designing realistic detections while minimizing false positives across network and endpoint telemetry."
+      },
+      "fpga": {
+        "title": "Occupancy Tracking System (FPGA)",
+        "description": "Designed and implemented a VHDL-based room occupancy tracking system, handling edge cases and validated through simulation and synthesis on FPGA.",
+        "challenge": "Handling edge cases and signal synchronization in a finite state machine implemented on FPGA."
+      },
+      "portfolio": {
+        "title": "Personal Portfolio Website",
+        "description": "Built a modern, performance-focused personal website with a strong emphasis on clarity, UI, and recruiter experience. Developed collaboratively with advanced animations and interactive components.",
+        "challenge": "Balancing advanced animations with performance, accessibility, and recruiter-focused usability."
+      },
+      "music": {
+        "title": "House Music & DJ Projects",
+        "description": "Creative exploration of house music through DJing and music production, blending structure, timing, and sound design.",
+        "challenge": "Translating musical structure and timing into cohesive DJ sets and original productions.",
+        "tags": "House · DJ · Music Production · Creativity"
+      }
+    },
+    "challengeLabel": "Challenge"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Drag and play with my tech stack",
+    "explore": "Now let's explore",
+    "sectionTitle": "What I Work With",
+    "keepScrolling": "Keep scrolling"
+  },
+  "footer": {
+    "menu": "Menu",
+    "letsConnect": "Let's Connect",
+    "downloadCV": "Download CV",
+    "location": "Based in Montréal, QC, Canada",
+    "copyright": "© 2025 Jean-Cédrik Dorélas"
+  },
+  "social": {
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "language": {
+    "switchTo": "FR"
+  }
+}
